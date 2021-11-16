@@ -1,4 +1,4 @@
-This is a project analyzing students' performance in two high school in
+This is a project that analyzes  students' performance in two Portuguese high schools.
 
 A link to the book version of the project is here:
 https://gbzachyin.github.io/StuPerfAnalysis/
