@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "High School Students Performance Analysis"
+author: "Group 6: Weisheng Chen & Zixiang Yin"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
