@@ -1,6 +1,6 @@
 This is a project that analyzes  students' performance in two Portuguese high schools.
 
-Group member: Zixiang Yin, Weisheng Chen.
+Group 6: Zixiang Yin, Weisheng Chen.
 
 A link to the book version of the project is here:
 https://gbzachyin.github.io/StuPerfAnalysis/
