@@ -1,1 +1,83 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Results
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(vcd)
+library(HH)
+library(here)
+library(readr)
+```
+
+## Students & Schools Analysis
+
+In this section, we will analyze students' non-academic data and in two schools.
+
+### Age
+
+```{r}
+stu <- readr::read_csv(here::here("./data/stu-mat.csv")) %>% 
+  mutate(sex = ifelse(sex == "F","Female", "Male"),
+         address = ifelse(address == "U","Urban ", "Rural"))
+ggplot(stu, aes(factor(age))) +
+  geom_bar(color = "black", 
+           fill = "lightblue") +
+  facet_wrap(~school) +
+  xlab("Age") +
+  ylab("Frequency") +
+  ggtitle("Bar chart for the age by schools") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+The bar chart plot below displays students' age distribution in the two schools. One of obvious property is that **GP** has much **more** students than **MS**. Precisely, **GP** has a total of `r sum(ifelse(stu$school=="GP",1,0))` students of which accounts for `r round(sum(ifelse(stu$school=="GP",1,0))/dim(stu)[1],4)*100`% of the dataset. Possibly due to the small number of students, age range is more narrow in **MS** (17-21) than that in **GP** (15-22).
+
+In order to compare the age distribution effectively, we calculate relative frequency plot below.
+
+```{r}
+stu %>% 
+  count(school, age) %>% 
+  ungroup() %>% 
+  group_by(school) %>% 
+  mutate(per = n / sum(n)) %>% 
+  dplyr::select(-n) %>% 
+  ungroup() %>% 
+  add_row(school = c("GP","MS","MS","MS"), 
+          age = c(21, 15, 16, 22), 
+          per = c(0, 0, 0, 0)) %>% 
+  ggplot(aes(factor(age), per * 100, fill = school)) + 
+    geom_bar(stat='identity', position = "dodge")  + 
+    xlab("Age") +
+    ylab("Relative frequency in %") +
+    ggtitle("Bar chart for the age by schools") +
+    theme_bw() +
+    theme(plot.title = element_text(hjust = 0.5),
+          panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank())
+```
+In the relative frequency plot, it is clear that students in **GP** are generally younger that in **MS**. In addition, age distribution in **MS** is centered that age group 18 is an absolute majority while age distribution in **GP** is spread that no age group accounts for more than thirty percent.
+
+### Family Education Level
+
+In this section, we will analyze the students' family education level in the two schools. Since the dataset offers the education level of both parents, we will use the higher one to indicate the family education level of a student, i.e. `max(Medu, Fedu)`.
+
+```{r}
+HH::likert(Pedu~., 
+           stu %>%  mutate(Pedu = pmax(Medu, Fedu)) %>%
+             count(school, Pedu, name = "Freq") %>% 
+             pivot_wider(names_from = school, 
+                         values_from = Freq) %>% 
+             mutate(GP = 100 * GP / sum(GP),
+                    MS = 100 * MS / sum(MS)),
+           positive.order = TRUE,
+           main = "Family education level in two schools",
+           xlab = "percent", ylab = "")
+```
+According to the plot above, we can find that students' failmy education level in **GP** is generally higher that in **MS**.

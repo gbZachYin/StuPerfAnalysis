@@ -6,3 +6,6 @@ results
 interactive-component
 conclusion
 check-for-missing-values
+students-schools-analysis
+age
+family-education-level
