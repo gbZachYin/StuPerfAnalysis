@@ -1,11 +1,18 @@
+tab:unnamed-chunk-3
 introduction
 data-sources
+data-merging
+feature-information
 data-transformation
 missing-values
+check-for-missing-values
 results
 interactive-component
 conclusion
+<<<<<<< HEAD
 check-for-missing-values
 students-schools-analysis
 age
 family-education-level
+=======
+>>>>>>> f6718055fec4c9e756e40dfa438cb28740c68860
