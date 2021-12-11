@@ -15,4 +15,3 @@ knitr::kable(Description[1:33, ], caption = "Columns and Descriptions",
 ```
 
 Note: Grades are related with the course subject, Math or Portuguese.
-

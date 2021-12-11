@@ -1,13 +1,11 @@
-tab:unnamed-chunk-9
+tab:unnamed-chunk-3
 introduction
 data-sources
 data-merging
 feature-information
-data-transforamtion
 data-transformation
 missing-values
 check-for-missing-values
 results
 interactive-component
 conclusion
-tab:unnamed-chunk-3
