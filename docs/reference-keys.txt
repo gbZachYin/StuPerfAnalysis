@@ -1,8 +1,10 @@
 introduction
 data-sources
+data-merging
+feature-information
 data-transformation
 missing-values
+check-for-missing-values
 results
 interactive-component
 conclusion
-check-for-missing-values
