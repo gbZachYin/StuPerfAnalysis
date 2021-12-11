@@ -12,7 +12,7 @@ Attributes for both student-mat.csv (Math course) and student-por.csv (Portugues
 3 age - student's age (numeric: from 15 to 22)
 4 address - student's home address type (binary: 'U' - urban or 'R' - rural)
 5 famsize - family size (binary: 'LE3' - less or equal to 3 or 'GT3' - greater than 3)
-6 Pstatus - parent's cohabitation status (binary: 'T' - living together or 'A' - apart)
+6 Pstatus - parent's cohabitation browseURL("docs/index.html")status (binary: 'T' - living together or 'A' - apart)
 7 Medu - mother's education (numeric: 0 - none, 1 - primary education (4th grade), 2 â€“ 5th to 9th grade, 3 â€“ secondary education or 4 â€“ higher education)
 8 Fedu - father's education (numeric: 0 - none, 1 - primary education (4th grade), 2 â€“ 5th to 9th grade, 3 â€“ secondary education or 4 â€“ higher education)
 9 Mjob - mother's job (nominal: 'teacher', 'health' care related, civil 'services' (e.g. administrative or police), 'at_home' or 'other')
