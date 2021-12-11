@@ -15,3 +15,8 @@ age
 family-education-level
 =======
 >>>>>>> f6718055fec4c9e756e40dfa438cb28740c68860
+sex-address
+reason-of-chossing-school
+reason-school
+reason-edu
+reason-adr

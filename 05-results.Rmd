@@ -81,3 +81,54 @@ HH::likert(Pedu~.,
            xlab = "percent", ylab = "")
 ```
 According to the plot above, we can find that students' failmy education level in **GP** is generally higher that in **MS**.
+
+### Sex & Address
+
+In this section, we are going to look at the students' distribution interms of their gender and home address type (Urban or Rural).
+
+```{r}
+HH::likert(grp~., 
+           union(stu %>% 
+                   count(school, sex) %>% 
+                   pivot_wider(names_from = school, values_from = n) %>% 
+                   rename(grp = sex) %>% 
+                   mutate(GP = 100 * GP / sum(GP),
+                          MS = 100 * MS / sum(MS)),
+                 stu %>% 
+                   count(school, address) %>% 
+                   pivot_wider(names_from = school, values_from = n) %>% 
+                   rename(grp = address) %>% 
+                   mutate(GP = 100 * GP / sum(GP),
+                          MS = 100 * MS / sum(MS))),
+           positive.order = TRUE,
+           main = "% of gender and address in two schools",
+           xlab = "percent", ylab = "")
+```
+
+In terms of gender, there is nearly no difference between two schools. Both **GP** and **MS** have a **half-half** gender distribution. However, only 20% students in **GP** are from rural area while there is no significance difference in students' address type in **MS**.
+
+### Reason of Chosing School
+
+In this section, we are going to multivariate analysis in terms of the association between schools, reasons, and family education level.
+
+#### Reason & School
+
+According to the plot below, there is association between schools and reasons. The **Pearson's Chi-squared** test rejects the hypothesis that two variables are not relevant with a p-value of 0.006, which is consistent with our observation.
+
+Consequently, we can obtain that **GP** has a better reputation in terms of reason of choice while course offered by **MS** is more attractive.
+
+```{r}
+mosaic(reason ~ school, 
+       stu %>% count(school, reason, name = "Freq"), 
+       direction = c("v", "h"))
+```
+
+#### Reason Adr
+
+According to the plot below, rural students are more likely to choose **MS** other than **GP** due to `home` and `other` reasons. A possible explanation would be **MS**'s study schedule is flexible. On the other hand, urban students tend to choose **MS** more often than **GP** because of `course`.
+
+```{r}
+mosaic(reason ~ address + school, 
+       stu %>% count(school, reason, address, name = "Freq"), 
+       direction = c("v", "v", "h"))
+```
