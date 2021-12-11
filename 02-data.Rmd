@@ -1,4 +1,99 @@
 # Data sources
 
-## Data Merging 
-Test
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(patchwork)
+```
+
+## Check for Missing values
+The plot below shows that there is no missing values in all the datasets we use.
+
+```{r, echo = F, message = F, fig.height=8, fig.width=8}
+# define the plot_missing function
+plot_missing <- function(df, percent = F, angle = 0) {
+  # generate sub dataframes
+  df_main <- data.frame(is.na(df)) %>%
+    group_by_all() %>%
+    count(name = "n", sort = TRUE) %>%
+    ungroup() %>%
+    rowwise() %>%
+    mutate(alpha = ifelse(all(c_across(-n) == F), 0.2, 0)) %>%
+    rownames_to_column("rid") %>%
+    mutate(rid = as.factor(as.numeric(rid)))
+  df_row <- df_main %>% 
+    select_if(negate(is_bare_logical)) %>%
+    ungroup() %>%
+    mutate(perc = n / sum(n))
+  df_col <- colSums(is.na(df)) %>%
+    stack() %>%
+    rename(key = ind, n = values) %>%
+    mutate(perc = n / dim(df)[1],
+           key = as.character(key)) %>%
+    arrange(-n, key) %>%
+    mutate(key = fct_relevel(key, key))
+  # generate plots
+  if (!percent) {
+    p_row_ggplot <- ggplot(df_row, aes(x = fct_rev(rid), y = n, 
+                                       fill = as.factor(alpha))) +
+                    ylab("row count")
+    p_col_ggplot <- ggplot(df_col, aes(x = key, y = n)) +
+                    ylim(0, ifelse(dim(df_main)[1] == 1, 20, NA)) +
+                    ylab("num rows missing:")
+  }
+  else {
+    p_row_ggplot <- ggplot(df_row, aes(x = fct_rev(rid), 
+                                       y = 100 * perc, 
+                                       fill = as.factor(alpha))) + 
+                    ylim(0, 100) + ylab("% rows")
+    p_col_ggplot <- ggplot(df_col, aes(x = key,
+                                       y = 100 * perc)) + 
+                    ylim(0, 100) + ylab("% rows missing:")
+  }
+  p_row <- p_row_ggplot +
+    geom_bar(stat = "identity", show.legend = F) + 
+    scale_fill_manual(values = c("lightblue", "skyblue3")) +
+    theme_bw() +
+    theme(axis.title.y = element_blank(),
+          panel.grid.major.y = element_blank(),
+          panel.grid.minor.y = element_blank()) +
+    coord_flip()
+  p_col <- p_col_ggplot +
+    geom_bar(stat = "identity", fill = "lightblue") +
+    ggtitle("Missing value patterns") +
+    theme_bw() +
+    theme(axis.title.x = element_blank(),
+          axis.text.x = element_text(angle = angle,
+                                     hjust = ifelse(angle, 0.7, 0.5)),
+          panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank())
+  p_main <- df_main %>%
+    select(-n) %>%
+    pivot_longer(cols = -c(rid, alpha), names_to = "col", values_to = "missing") %>%
+    mutate(missing = as.factor(missing + alpha),
+           label = ifelse(missing == 0.2 & col == names(df)[1], 
+                          "completed cases", "")) %>%
+    #ggplot(aes(x = factor(col, levels = levels(df_col$key)), 
+    ggplot(aes(x = fct_relevel(col, levels(df_col$key)), 
+               y = fct_rev(rid))) +
+    geom_tile(aes(fill = missing), color = "white", show.legend = FALSE) +
+    geom_text(aes(x = 0.5 + floor(dim(df)[2] / 2), label = label)) +
+    xlab("variable") + 
+    ylab("missing pattern") +
+    scale_fill_manual(values = c("lightgrey", "darkgrey", "medium purple")) +
+    theme_bw() +
+    theme(axis.line = element_line(colour = "black"),
+          axis.text.x = element_text(angle = angle, 
+                                     hjust = ifelse(angle, 0.7, 0.5)),
+          panel.grid.major = element_blank(),
+          panel.border = element_blank())
+
+  # display plots
+  p_col + plot_spacer() + 
+    p_main + p_row + 
+    plot_layout(heights = c(1, 2.5), widths = c(2.5, 1))
+}
+student_mat <- read_csv("data/stu-mat.csv")
+plot_missing(student_mat, angle = 30)
+```
