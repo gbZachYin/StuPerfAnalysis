@@ -8,7 +8,7 @@ library(patchwork)
 ```
 
 ## Check for Missing values
-The plot below shows that there is no missing values in all the datasets we use.
+The plot below shows that there is no missing value in all the datasets we use.
 
 ```{r, echo = F, message = F, fig.height=8, fig.width=8}
 # define the plot_missing function
