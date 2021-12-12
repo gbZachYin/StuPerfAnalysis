@@ -16,7 +16,7 @@ knitr::kable(Description[c(1:12,20,22), ],
 
 ## Data Cleaning
 After inspecting each variables carefully, we detected that there were outliers in `Age` and abnormal values in Math and Portuguese grades. \
-Let's first take a look at the boxplot of age.\
+Let's firstly take a look at the boxplot of age.\
 ```{r,echo=FALSE}
 mat=read.table("./data/student-mat.csv",sep=";",header=TRUE)
 por=read.table("./data/student-por.csv",sep=";",header=TRUE)
@@ -30,7 +30,7 @@ colnames(df)[colnames(df) == 'G3.y'] = 'Portuguese_G3'
 ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.title.y=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank())+coord_flip()
 ```
 
-Most students leave secondary school at 16 or 17. There may be some exceptions and age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which includes age = 20 or age = 22. \
+Most students leave secondary school at 16 or 17. There may be some exceptions so that age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which includes age = 20 or age = 22. \
 Next, let's move to Math and Portuguese grades in different period. \
 ```{r,echo=FALSE}
 math_long = df %>% pivot_longer(c(Math_G1,Math_G2,Math_G3), names_to = 'Period', values_to = 'Grade')
@@ -47,7 +47,7 @@ plot_portuguese = ggplot(portuguese_long,aes(x = Grade)) +
 grid.arrange(plot_math, plot_portuguese, nrow = 2)
 ```
 
-We can see there are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when the student misses the exam or he/she cheats in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0. 
+There are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when a student missed the exam or he/she cheated in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0. 
 
 ## Variable Transformation
 1. Convert `absences` variable(numeric from 0 to 93) into categorical variable as follow: \
