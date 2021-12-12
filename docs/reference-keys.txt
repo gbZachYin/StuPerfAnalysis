@@ -3,7 +3,7 @@ introduction
 data-sources
 data-merging
 feature-information
-data-transformation
+data-cleaning-and-transformation
 data-merging-1
 data-cleaning
 variable-transformation
@@ -19,4 +19,3 @@ reason-school
 reason-adr
 interactive-component
 conclusion
-data-cleaning-and-transformation
