@@ -261,3 +261,9 @@ grid.arrange(p13)
 ```
 
 `health` (current health status: from 1 - very bad to 5 - very good): There is a strong relationship between `health` and `Por_Letter_Grade`. As students with higher grade, they may tend to be more stressful regarding their study. Moreover, as what we discovered before, students with higher grade have longer weekly study time. Hence, unsurprisingly, we expect to see that students with higher grade have worse health condition than those with lower grade, as spending more time on study and having more stress make negative impact on both physical and mental health.\
+
+## Grade in Different Period
+
+In this section, we are interested in the Math and Portuguese in different period. We tend to believe that there should be a strong relationship among the exam grade in different period, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well. This time, we will use `Math_G1`, `Math_G2`, `Math_G3`, `Por_G1`, `Por_G2` and `Por_G3` which are numeric grade instead of letter grade. \
+
+
