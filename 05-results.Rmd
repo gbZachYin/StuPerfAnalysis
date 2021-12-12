@@ -13,6 +13,7 @@ library(vcd)
 library(HH)
 library(here)
 library(readr)
+library(psych)
 ```
 
 ## Students & Schools Analysis
@@ -135,8 +136,9 @@ mosaic(reason ~ address + school,
 
 ## Factors Affecting Students' Academic Performance
 
-In this section, we will analyze factors that affect students' academic performance. Given that we have more than 40 variables in our dataset and all of them are categorical variables after conversion, we decide to use Pearson's Chi-squared Test to help us narrow down our variable list to be analyzed later. Here we are using the final letter grade(Math_Letter_Grade and Por_Letter_Grade which is converted from G3 based on the grading system in Portugal) for both Math and Portuguese to reflect student's academic performance. For each variable in our dataset, we do a Pearson's Chi-squared Test to see if there is an association between the variable and Math_Letter_Grade or Portuguese_Letter_Grade. We set alpha = 0.01 and the test suggests the following variable list that may have strong relationship with student's academic performance: \
-Variables that may affect on students' math grade: 
+In this section, we will analyze factors that affect students' academic performance. Given that we have more than 40 variables in our dataset and all of them are categorical variables after conversion, we decide to use Pearson's Chi-squared Test to help us narrow down our variable list to be analyzed later. Here we are using the final letter grade(Math_Letter_Grade and Por_Letter_Grade which is converted from G3 based on the grading system in Portugal) for both Math and Portuguese to reflect student's academic performance. For each variable in our dataset, we do a Pearson's Chi-squared Test to see if there is an association between the variable and Math_Letter_Grade or Portuguese_Letter_Grade. We set alpha = 0.01 and the following graphs show factors found by Pearson's Chi-squared Test that have impact on students' Math and Portuguese grades, and their correlation with grades: \
+
+
 ```{r}
 mat=read.table("./data/student-mat.csv",sep=";",header=TRUE)
 por=read.table("./data/student-por.csv",sep=";",header=TRUE)
@@ -159,15 +161,15 @@ df = df %>% mutate(Math_Letter_Grade = case_when(Math_G3 >= 18 & Math_G3 <= 20 ~
                                         Portuguese_G3 >= 10 & Portuguese_G3 < 14 ~ 'C',
                                         Portuguese_G3 >= 4 & Portuguese_G3 < 10 ~ 'D',
                                         Portuguese_G3 >= 0 & Portuguese_G3 < 4 ~ 'F' ),
-         absences.x = case_when(absences.x == 0 ~ '0',
-                                absences.x >0 & absences.x <= 2 ~ '1',
-                                absences.x >2 & absences.x <= 4 ~ '2',
-                                absences.x >4 & absences.x <= 8 ~ '3',
-                                absences.x >8 ~ '4'),
-         absences.y = case_when(absences.y == 0 ~ '0',
-                                absences.y >0 & absences.y <= 2 ~ '1',
-                                absences.y >2 & absences.y <= 4 ~ '2',
-                                absences.y >4 ~ '3'))
+         absences.x = case_when(absences.x == 0 ~ 0,
+                                absences.x >0 & absences.x <= 2 ~ 1,
+                                absences.x >2 & absences.x <= 4 ~ 2,
+                                absences.x >4 & absences.x <= 8 ~ 3,
+                                absences.x >8 ~ 4),
+         absences.y = case_when(absences.y == 0 ~ 0,
+                                absences.y >0 & absences.y <= 2 ~ 1,
+                                absences.y >2 & absences.y <= 4 ~ 2,
+                                absences.y >4 ~ 3))
 test = function(x, course){
   l = c()
   for(i in 1:(ncol(x)-1)){
@@ -183,15 +185,32 @@ Por_cor = df[,c(1:14,34:49,56)]
 colnames(Por_cor) = str_remove_all(colnames(Por_cor),'\\.y')
 list_math = test(Math_cor,'Math_Grade')
 list_por = test(Por_cor)
-colnames(Math_cor)[list_math]
+MathCorMat = data.frame(factors = colnames(Math_cor)[list_math], cor = 1)
+for(i in 1:length(list_math)){
+  if(typeof(Math_cor[,list_math[i]]) == 'integer' | typeof(Math_cor[,list_math[i]]) == 'double'){
+    MathCorMat[i,2] = cor(df$Math_G3,Math_cor[,list_math[i]])
+  }else{
+    MathCorMat[i,2] = cor(df$Math_G3,case_when(Math_cor[,list_math[i]] == 'yes' ~ 1, Math_cor[,list_math[i]] == 'no' ~ 0))
+  }
+}
+MathCorMat['NP'] = case_when(MathCorMat$cor > 0 ~ 'Positive', MathCorMat$cor < 0 ~ 'Negative')
+f1 = ggplot(MathCorMat, aes(y = cor, x = fct_reorder(factors,cor,.desc=TRUE), fill = NP)) + geom_bar(stat="identity") + xlab('factors') + ggtitle('Correlations between different factors and math grade in the third period') + theme(legend.position = 'none')
+
+PorCorMat = data.frame(factors = colnames(Por_cor)[list_por], cor = 1)
+for(i in 1:length(list_por)){
+  if(typeof(Por_cor[,list_por[i]]) == 'integer' | typeof(Por_cor[,list_por[i]]) == 'double'){
+    PorCorMat[i,2] = cor(df$Portuguese_G3,Por_cor[,list_por[i]])
+  }else{
+    PorCorMat[i,2] = cor(df$Portuguese_G3,case_when(Por_cor[,list_por[i]] == 'yes' ~ 1, Por_cor[,list_por[i]] == 'no' ~ 0))
+  }
+}
+PorCorMat['NP'] = case_when(PorCorMat$cor > 0 ~ 'Positive', PorCorMat$cor < 0 ~ 'Negative')
+f2 = ggplot(PorCorMat, aes(y = cor, x = fct_reorder(factors,cor,.desc=TRUE), fill = NP)) + geom_bar(stat="identity") + xlab('factors') + ggtitle('Correlations between different factors and Portuguese grade in the third period') + theme(legend.position = 'none')
+
+grid.arrange(f1,f2,nrow=2)
 ```
 
-Variables that may affect students' Portuguese grade: \
-```{r}
-colnames(Por_cor)[list_por]
-```
-
-Now we can dig deeper into these variables one by one. 
+There are some common factors: `Medu` have positive impact on both Math and Portuguese grade, while `schoolsup` and `failures` have negative impact on these two subject grade. Now we can dig deeper into these variables one by one. 
 
 ### Variables Relating to Math Grade
 
@@ -255,6 +274,7 @@ grid.arrange(p11,p12,ncol=2)
 `goout` (going out with friends: from 1 - very low to 5 - very high): There is a clear trend that students who often going out with friends(`goout = 4 or 5`) are less likely to get high grade on Portuguese languange exam. \
 
 `Dalc` (workday alcohol consumption: from 1 - very low to 5 - very high): The mosaic plot shows that the proportion of `Dalc = 3, 4 or 5` increases rapidly in students with grade B, C, D and F which indicates that increment in alcohol consumption in workday will have negative impact on students' performance on Portuguese. \
+
 
 ```{r}
 grid.arrange(p13)
