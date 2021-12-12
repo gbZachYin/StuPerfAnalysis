@@ -24,7 +24,7 @@
 <meta name="author" content="Group 6: Weisheng Chen &amp; Zixiang Yin" />
 
 
-<meta name="date" content="2021-12-11" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -97,6 +97,11 @@
 <li class="chapter" data-level="5.1.2" data-path="results.html"><a href="results.html#family-education-level"><i class="fa fa-check"></i><b>5.1.2</b> Family Education Level</a></li>
 <li class="chapter" data-level="5.1.3" data-path="results.html"><a href="results.html#sex-address"><i class="fa fa-check"></i><b>5.1.3</b> Sex &amp; Address</a></li>
 <li class="chapter" data-level="5.1.4" data-path="results.html"><a href="results.html#reason-of-chosing-school"><i class="fa fa-check"></i><b>5.1.4</b> Reason of Chosing School</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#factors-affecting-students-academic-performance"><i class="fa fa-check"></i><b>5.2</b> Factors Affecting Students’ Academic Performance</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#variables-relating-to-math-grade"><i class="fa fa-check"></i><b>5.2.1</b> Variables Relating to Math Grade</a></li>
+<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#variables-relating-to-portuguese-grade"><i class="fa fa-check"></i><b>5.2.2</b> Variables Relating to Portuguese Grade</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
@@ -200,12 +205,12 @@
 <div id="data-cleaning" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Data Cleaning</h2>
 <p>After inspecting each variables carefully, we detected that there were outliers in <code>Age</code> and abnormal values in Math and Portuguese grades.<br />
-Let’s first take a look at the boxplot of age.<br />
+Let’s firstly take a look at the boxplot of age.<br />
 <img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>Most students leave secondary school at 16 or 17. There may be some exceptions and age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which includes age = 20 or age = 22.<br />
+<p>Most students leave secondary school at 16 or 17. There may be some exceptions so that age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which includes age = 20 or age = 22.<br />
 Next, let’s move to Math and Portuguese grades in different period.<br />
 <img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>We can see there are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when the student misses the exam or he/she cheats in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0.</p>
+<p>There are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when a student missed the exam or he/she cheated in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0.</p>
 </div>
 <div id="variable-transformation" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Variable Transformation</h2>
