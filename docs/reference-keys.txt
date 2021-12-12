@@ -1,22 +1,21 @@
-tab:unnamed-chunk-3
+tab:unnamed-chunk-4
 introduction
 data-sources
 data-merging
 feature-information
 data-transformation
+data-merging-1
+data-cleaning-and-feature-engineeing
 missing-values
 check-for-missing-values
 results
-interactive-component
-conclusion
-<<<<<<< HEAD
 students-schools-analysis
 age
 family-education-level
-=======
->>>>>>> f6718055fec4c9e756e40dfa438cb28740c68860
 sex-address
-reason-of-chossing-school
+reason-of-chosing-school
 reason-school
-reason-edu
 reason-adr
+interactive-component
+conclusion
+tab:unnamed-chunk-3
