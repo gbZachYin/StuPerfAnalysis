@@ -1,4 +1,4 @@
-# Data transformation
+# Data cleaning and transformation
 ```{r,echo=FALSE}
 library(ggplot2)
 library(dplyr)
@@ -50,14 +50,14 @@ grid.arrange(plot_math, plot_portuguese, nrow = 2)
 We can see there are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when the student misses the exam or he/she cheats in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0. 
 
 ## Variable Transformation
-1.Convert `absences` variable(numeric from 0 to 93) into categorical as follow: \
+1. Convert `absences` variable(numeric from 0 to 93) into categorical as follow: \
 If `absences` = 0, then convert it to 0.\
 If `absences` > 0 and `absences` <= first quartile, then convert it to 1. \
 If `absences` > first quartile and `absences` <= second quartile, then convert it to 2.\
 If `absences` > second quartile and `absences` <= thrid quartile, then convert it to 3. \
 If `absences` > thrid quartile, then convert it to 4. \
 
-2.Convert all Math and Portuguese grades into categorical based on the following grading system for Portuguese school: \
+2. Convert all Math and Portuguese grades into categorical based on the following grading system for Portuguese school: \
 ```{r,echo=FALSE}
 gradingscale = readr::read_csv(here::here("./data/Grading_Scale.csv"))
 knitr::kable(gradingscale,

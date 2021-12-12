@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Data cleaning and transformation | High School Students Performance Analysis</title>
+  <meta name="description" content="Chapter 3 Data cleaning and transformation | High School Students Performance Analysis" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Data cleaning and transformation | High School Students Performance Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Data cleaning and transformation | High School Students Performance Analysis" />
+  
+  
+  
+
+<meta name="author" content="Group 6: Weisheng Chen &amp; Zixiang Yin" />
+
+
+<meta name="date" content="2021-12-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-sources.html"/>
+<link rel="next" href="missing-values.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">StuPerfAnalysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#data-merging"><i class="fa fa-check"></i><b>2.1</b> Data Merging</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#feature-information"><i class="fa fa-check"></i><b>2.2</b> Feature Information</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>3</b> Data cleaning and transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#data-merging-1"><i class="fa fa-check"></i><b>3.1</b> Data Merging</a></li>
+<li class="chapter" data-level="3.2" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#data-cleaning"><i class="fa fa-check"></i><b>3.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="3.3" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#variable-transformation"><i class="fa fa-check"></i><b>3.3</b> Variable Transformation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#check-for-missing-values"><i class="fa fa-check"></i><b>4.1</b> Check for Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#students-schools-analysis"><i class="fa fa-check"></i><b>5.1</b> Students &amp; Schools Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="results.html"><a href="results.html#age"><i class="fa fa-check"></i><b>5.1.1</b> Age</a></li>
+<li class="chapter" data-level="5.1.2" data-path="results.html"><a href="results.html#family-education-level"><i class="fa fa-check"></i><b>5.1.2</b> Family Education Level</a></li>
+<li class="chapter" data-level="5.1.3" data-path="results.html"><a href="results.html#sex-address"><i class="fa fa-check"></i><b>5.1.3</b> Sex &amp; Address</a></li>
+<li class="chapter" data-level="5.1.4" data-path="results.html"><a href="results.html#reason-of-chosing-school"><i class="fa fa-check"></i><b>5.1.4</b> Reason of Chosing School</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">High School Students Performance Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-cleaning-and-transformation" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Data cleaning and transformation</h1>
+<div id="data-merging-1" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Data Merging</h2>
+<p>Two datasets are provided regarding two distinct subjects: Mathematics (mat) and Portuguese language (por). To combine these two datasets, we spcified the following columns to be used for merging because these columns are basic information of students:<br />
+</p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="92%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Column Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">school</td>
+<td align="left">student’s school (binary: ‘GP’ - Gabriel Pereira or ‘MS’ - Mousinho da Silveira)</td>
+</tr>
+<tr class="even">
+<td align="left">sex</td>
+<td align="left">student’s sex (binary: ‘F’ - female or ‘M’ - male)</td>
+</tr>
+<tr class="odd">
+<td align="left">age</td>
+<td align="left">student’s age (numeric: from 15 to 22)</td>
+</tr>
+<tr class="even">
+<td align="left">address</td>
+<td align="left">student’s home address type (binary: ‘U’ - urban or ‘R’ - rural)</td>
+</tr>
+<tr class="odd">
+<td align="left">famsize</td>
+<td align="left">family size (binary: ‘LE3’ - less or equal to 3 or ‘GT3’ - greater than 3)</td>
+</tr>
+<tr class="even">
+<td align="left">Pstatus</td>
+<td align="left">parent’s cohabitation status (binary: ‘T’ - living together or ‘A’ - apart)</td>
+</tr>
+<tr class="odd">
+<td align="left">Medu</td>
+<td align="left">mother’s education (numeric: 0 - none, 1 - primary education (4th grade), 2 - 5th to 9th grade, 3 - secondary education or 4 - higher education)</td>
+</tr>
+<tr class="even">
+<td align="left">Fedu</td>
+<td align="left">father’s education (numeric: 0 - none, 1 - primary education (4th grade), 2 - 5th to 9th grade, 3 - secondary education or 4 - higher education)</td>
+</tr>
+<tr class="odd">
+<td align="left">Mjob</td>
+<td align="left">mother’s job (nominal: ‘teacher’, ‘health’ care related, civil ‘services’ (e.g. administrative or police), ‘at_home’ or ‘other’)</td>
+</tr>
+<tr class="even">
+<td align="left">Fjob</td>
+<td align="left">father’s job (nominal: ‘teacher’, ‘health’ care related, civil ‘services’ (e.g. administrative or police), ‘at_home’ or ‘other’)</td>
+</tr>
+<tr class="odd">
+<td align="left">reason</td>
+<td align="left">reason to choose this school (nominal: close to ‘home’, school ‘reputation’, ‘course’ preference or ‘other’)</td>
+</tr>
+<tr class="even">
+<td align="left">guardian</td>
+<td align="left">student’s guardian (nominal: ‘mother’, ‘father’ or ‘other’)</td>
+</tr>
+<tr class="odd">
+<td align="left">nursery</td>
+<td align="left">attended nursery school (binary: yes or no)</td>
+</tr>
+<tr class="even">
+<td align="left">internet</td>
+<td align="left">Internet access at home (binary: yes or no)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="data-cleaning" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data Cleaning</h2>
+<p>After inspecting each variables carefully, we detected that there were outliers in <code>Age</code> and abnormal values in Math and Portuguese grades.<br />
+Let’s first take a look at the boxplot of age.<br />
+<img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Most students leave secondary school at 16 or 17. There may be some exceptions and age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which includes age = 20 or age = 22.<br />
+Next, let’s move to Math and Portuguese grades in different period.<br />
+<img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We can see there are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when the student misses the exam or he/she cheats in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0.</p>
+</div>
+<div id="variable-transformation" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Variable Transformation</h2>
+<ol style="list-style-type: decimal">
+<li><p>Convert <code>absences</code> variable(numeric from 0 to 93) into categorical as follow:<br />
+If <code>absences</code> = 0, then convert it to 0.<br />
+If <code>absences</code> &gt; 0 and <code>absences</code> &lt;= first quartile, then convert it to 1.<br />
+If <code>absences</code> &gt; first quartile and <code>absences</code> &lt;= second quartile, then convert it to 2.<br />
+If <code>absences</code> &gt; second quartile and <code>absences</code> &lt;= thrid quartile, then convert it to 3.<br />
+If <code>absences</code> &gt; thrid quartile, then convert it to 4.<br />
+</p></li>
+<li><p>Convert all Math and Portuguese grades into categorical based on the following grading system for Portuguese school:<br />
+</p></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Grade</th>
+<th align="left">Percentage</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">5(A)</td>
+<td align="left">90-100</td>
+<td align="left">Very good or excellent – best possible grade</td>
+</tr>
+<tr class="even">
+<td align="left">4(B)</td>
+<td align="left">70-89</td>
+<td align="left">Good</td>
+</tr>
+<tr class="odd">
+<td align="left">3(C)</td>
+<td align="left">50-69</td>
+<td align="left">Satisfactory – indicates average performance</td>
+</tr>
+<tr class="even">
+<td align="left">2(D)</td>
+<td align="left">20-49</td>
+<td align="left">Unsatisfactory</td>
+</tr>
+<tr class="odd">
+<td align="left">1(F)</td>
+<td align="left">0-19</td>
+<td align="left">Poor – lowest possible grade</td>
+</tr>
+</tbody>
+</table>
+<p>The grading system can be found <a href="https://en.wikipedia.org/wiki/Grading_systems_by_country#Portugal">here</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-values.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/YOUR gbZachYin/StuPerfAnalysis/edit/main/03-cleaning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/YOUR gbZachYin/StuPerfAnalysis/blob/main/03-cleaning.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
