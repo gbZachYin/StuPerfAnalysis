@@ -79,10 +79,11 @@
 <li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#data-merging"><i class="fa fa-check"></i><b>2.1</b> Data Merging</a></li>
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#feature-information"><i class="fa fa-check"></i><b>2.2</b> Feature Information</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<li class="chapter" data-level="3" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>3</b> Data cleaning and transformation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#data-merging-1"><i class="fa fa-check"></i><b>3.1</b> Data Merging</a></li>
-<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#data-cleaning-and-feature-engineeing"><i class="fa fa-check"></i><b>3.2</b> Data Cleaning and Feature Engineeing</a></li>
+<li class="chapter" data-level="3.1" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#data-merging-1"><i class="fa fa-check"></i><b>3.1</b> Data Merging</a></li>
+<li class="chapter" data-level="3.2" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#data-cleaning"><i class="fa fa-check"></i><b>3.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="3.3" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#variable-transformation"><i class="fa fa-check"></i><b>3.3</b> Variable Transformation</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
@@ -126,22 +127,22 @@
 <p>In this section, we will analyze students’ non-academic data and in two schools.</p>
 <div id="age" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Age</h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 The bar chart plot below displays students’ age distribution in the two schools. One of obvious property is that <strong>GP</strong> has much <strong>more</strong> students than <strong>MS</strong>. Precisely, <strong>GP</strong> has a total of 349 students of which accounts for 88.35% of the dataset. Possibly due to the small number of students, age range is more narrow in <strong>MS</strong> (17-21) than that in <strong>GP</strong> (15-22).</p>
 <p>In order to compare the age distribution effectively, we calculate relative frequency plot below.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 In the relative frequency plot, it is clear that students in <strong>GP</strong> are generally younger that in <strong>MS</strong>. In addition, age distribution in <strong>MS</strong> is centered that age group 18 is an absolute majority while age distribution in <strong>GP</strong> is spread that no age group accounts for more than thirty percent.</p>
 </div>
 <div id="family-education-level" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Family Education Level</h3>
 <p>In this section, we will analyze the students’ family education level in the two schools. Since the dataset offers the education level of both parents, we will use the higher one to indicate the family education level of a student, i.e. <code>max(Medu, Fedu)</code>.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 According to the plot above, we can find that students’ failmy education level in <strong>GP</strong> is generally higher that in <strong>MS</strong>.</p>
 </div>
 <div id="sex-address" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Sex &amp; Address</h3>
 <p>In this section, we are going to look at the students’ distribution interms of their gender and home address type (Urban or Rural).</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>In terms of gender, there is nearly no difference between two schools. Both <strong>GP</strong> and <strong>MS</strong> have a <strong>half-half</strong> gender distribution. However, only 20% students in <strong>GP</strong> are from rural area while there is no significance difference in students’ address type in <strong>MS</strong>.</p>
 </div>
 <div id="reason-of-chosing-school" class="section level3" number="5.1.4">
@@ -151,12 +152,12 @@ According to the plot above, we can find that students’ failmy education level
 <h4><span class="header-section-number">5.1.4.1</span> Reason &amp; School</h4>
 <p>According to the plot below, there is association between schools and reasons. The <strong>Pearson’s Chi-squared</strong> test rejects the hypothesis that two variables are not relevant with a p-value of 0.006, which is consistent with our observation.</p>
 <p>Consequently, we can obtain that <strong>GP</strong> has a better reputation in terms of reason of choice while course offered by <strong>MS</strong> is more attractive.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 <div id="reason-adr" class="section level4" number="5.1.4.2">
 <h4><span class="header-section-number">5.1.4.2</span> Reason Adr</h4>
 <p>According to the plot below, rural students are more likely to choose <strong>MS</strong> other than <strong>GP</strong> due to <code>home</code> and <code>other</code> reasons. A possible explanation would be <strong>MS</strong>’s study schedule is flexible. On the other hand, urban students tend to choose <strong>MS</strong> more often than <strong>GP</strong> because of <code>course</code>.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -222,20 +223,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
