@@ -82,7 +82,8 @@
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#data-merging-1"><i class="fa fa-check"></i><b>3.1</b> Data Merging</a></li>
-<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#data-cleaning-and-feature-engineeing"><i class="fa fa-check"></i><b>3.2</b> Data Cleaning and Feature Engineeing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#data-cleaning"><i class="fa fa-check"></i><b>3.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#adding-new-variable"><i class="fa fa-check"></i><b>3.3</b> Adding New Variable</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
@@ -197,10 +198,18 @@ To combine these two datasets, we spcified the following columns to be used for 
 </tbody>
 </table>
 </div>
-<div id="data-cleaning-and-feature-engineeing" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Data Cleaning and Feature Engineeing</h2>
+<div id="data-cleaning" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data Cleaning</h2>
 <p>After inspecting each variables carefully, we detected that there were outliers in <code>Age</code> and abnormal values in Math and Portuguese grades.<br />
-<img src="finalproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+Let’s first take a look at the boxplot of age.<br />
+<img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Most students leave secondary school at 16 or 17. There may be some exceptions and age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which includes age = 20 or age = 22.<br />
+Next, let’s move to Math and Portuguese grades in different period.<br />
+<img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We can see there are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when the student misses the exam or he/she cheats in exam. However, absence from exam or cheating are not part of factors we are studying. Ih this case, we remove all data with grade of 0.</p>
+</div>
+<div id="adding-new-variable" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Adding New Variable</h2>
 <p>We created two new variables to represent overall performance on Math and Portuguese for a student as:<br />
 <span class="math inline">\(Math\_Grade = \frac{1}{3}Math\_G1 + \frac{1}{3}Math\_G2 + \frac{1}{3}Math\_G3\)</span><br />
 <span class="math inline">\(Por\_Grade = \frac{1}{3}Por\_G1 + \frac{1}{3}Por\_G2 + \frac{1}{3}Por\_G3\)</span><br />
