@@ -1,20 +1,22 @@
 # Interactive component
 
 ## Link to the interactive graph
-Click [here](https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/5af92c3da9a60bb52579881359194ec4aa159e32/ic.html) or the link below: https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/5af92c3da9a60bb52579881359194ec4aa159e32/ic.html
+Click [here](https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/3ad151d391449183e57fb2b7bfa18392a36c2dd6/ic.html) or the link below: https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/3ad151d391449183e57fb2b7bfa18392a36c2dd6/ic.html
 
 ## Descriptions
 
-The interactive component of the project is mainly built with d3.js version 6 and Danfo.js version 3.3. The former is for plot and the latter is for dataframe processing in JavaScript. The raw html code is uploaded to the project github repo named [ic.html](https://raw.githubusercontent.com/gbZachYin/StuPerfAnalysis/main/ic.html). 
-The collasiable tree and dynamic barchart below it dispaly how the distribution students' final letter grade varies as the tree structure changes.
+The interactive component of the project is mainly built with d3.js version 6 and Danfo.js version 3.3. The former is for plot and the latter is for dataframe processing in JavaScript. The raw HTML code is uploaded to the project Github repo named [ic.html](https://raw.githubusercontent.com/gbZachYin/StuPerfAnalysis/main/ic.html). 
+The collapsible tree and dynamic barchart below display how the distribution of students' final letter grade varies as the tree structure changes.
 
 ## Instructions for using the plot
 
-There are tree deterministic variables (`school`, `x`, and `y` that have the strongest association with final grade among all) with which users can play. The plot is initialized with all nodes being collapsed except for `school` in the tree and the distribution of all students' final grade in the bar chart. 
+There are three deterministic variables (i.e. Mother’s education level, number of past class failures, and extra educational support) that have the strongest association with final grades regardless of the subject. The plot is initialized with all nodes being collapsed except for `Medu` in the tree and the distribution of all students' final grades for **Math** in the bar chart. 
 
-1. Users can click to either expand or collapse a certain nodes. 
-2. Users can view the tree as a filter. For instance, a tree with nodes x and y expanded meaning that a filter with x=x1 and y=y1 is applied to the whole dataset.
-3. Users can hover the mouse over a bar to see the exact number of students getting a certain grade under the current tree structure. 
+1. Users can click the button at the top to choose the subject (Math or Portuguese). 
+2. Users can either expand or collapse a certain node. 
+3. The tree can be viewed as a filter. For instance, a tree with nodes failures-0 and SchoolSup-Yes expanded meaning that the final grade distribution for students who have no courses failed in the past and receive educational support are shown.
+
+![](./iceg.png){width=95%}
 
 References:
 
