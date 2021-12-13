@@ -14,6 +14,7 @@ library(HH)
 library(here)
 library(readr)
 library(psych)
+library(ggalluvial)
 ```
 
 ## Students & Schools Analysis
@@ -141,7 +142,7 @@ In this section, we will analyze factors that affect students' academic performa
 
 ```{r}
 df = read.csv("./data/clean/df.csv")
-test = function(x, course){
+test = function(x){
   l = c()
   for(i in 1:(ncol(x)-1)){
     if(chisq.test(x[,i],x[,ncol(x)])$p.value < 0.01){
@@ -150,11 +151,11 @@ test = function(x, course){
   }
   return(l)
 }
-Math_cor = df[,c(1:30,54)]
+Math_cor = df[,c(1:30,57)]
 colnames(Math_cor) = str_remove(colnames(Math_cor),'\\.x')
-Por_cor = df[,c(1:15,34:48,55)]
+Por_cor = df[,c(1:15,34:48,54)]
 colnames(Por_cor) = str_remove_all(colnames(Por_cor),'\\.y')
-list_math = test(Math_cor,'Math_Grade')
+list_math = test(Math_cor)
 list_por = test(Por_cor)
 MathCorMat = data.frame(factors = colnames(Math_cor)[list_math], cor = 1)
 for(i in 1:length(list_math)){
@@ -186,10 +187,10 @@ There are some common factors: `Medu` have positive impact on both Math and Port
 ### Variables Relating to Math Grade
 
 ```{r}
-p1 = grid.grabExpr(mosaic(Medu ~ Math_Letter_Grade, Math_cor, direction = c("v", "h")))
-p2 = grid.grabExpr(mosaic(failures ~ Math_Letter_Grade, Math_cor, direction = c("v", "h")))
-p3 = grid.grabExpr(mosaic(schoolsup ~ Math_Letter_Grade, Math_cor, direction = c("v", "h")))
-p4 = grid.grabExpr(mosaic(absences ~ Math_Letter_Grade, Math_cor, direction = c("v", "h")))
+p1 = grid.grabExpr(mosaic(Medu ~ Math_Letter_Grade_G3, Math_cor, direction = c("v", "h")))
+p2 = grid.grabExpr(mosaic(failures ~ Math_Letter_Grade_G3, Math_cor, direction = c("v", "h")))
+p3 = grid.grabExpr(mosaic(schoolsup ~ Math_Letter_Grade_G3, Math_cor, direction = c("v", "h")))
+p4 = grid.grabExpr(mosaic(absences ~ Math_Letter_Grade_G3, Math_cor, direction = c("v", "h")))
 grid.arrange(p1,p2,ncol=2)
 ```
 
@@ -206,15 +207,15 @@ grid.arrange(p3,p4,ncol=2)
 
 ### Variables Relating to Portuguese Grade
 ```{r,warning=FALSE}
-p5 = grid.grabExpr(mosaic(Medu ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p6 = grid.grabExpr(mosaic(studytime ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p7 = grid.grabExpr(mosaic(failures ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p8 = grid.grabExpr(mosaic(schoolsup ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p9 = grid.grabExpr(mosaic(higher ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p10 = grid.grabExpr(mosaic(freetime ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p11 = grid.grabExpr(mosaic(goout ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p12 = grid.grabExpr(mosaic(Dalc ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
-p13 = grid.grabExpr(mosaic(health ~ Por_Letter_Grade, Por_cor,direction = c("v","h")))
+p5 = grid.grabExpr(mosaic(Medu ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p6 = grid.grabExpr(mosaic(studytime ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p7 = grid.grabExpr(mosaic(failures ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p8 = grid.grabExpr(mosaic(schoolsup ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p9 = grid.grabExpr(mosaic(higher ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p10 = grid.grabExpr(mosaic(freetime ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p11 = grid.grabExpr(mosaic(goout ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p12 = grid.grabExpr(mosaic(Dalc ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
+p13 = grid.grabExpr(mosaic(health ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
 grid.arrange(p5,p6, ncol = 2)
 ```
 
@@ -255,17 +256,30 @@ grid.arrange(p13)
 
 ## Grade in Different Period
 
-In this section, we are interested in the Math and Portuguese in different period. We tend to believe that there should be a strong relationship among the exam grade in different period, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well. This time, we will use `Math_G1`, `Math_G2`, `Math_G3`, `Por_G1`, `Por_G2` and `Por_G3` which are numeric grade instead of letter grade. \
+In this section, we are interested in the grades of Math and Portuguese in different period. We tend to believe that there should be strong relationships among the exam grades in different period, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well. Let's take a look at the alluvial diagram:  \
+
 ```{r}
-df_new = read.csv("./data/clean/df_new.csv")
+df_new = read.csv("./data/clean/df.csv")
 math_letter = df_new[,c(1,55:57)]
 colnames(math_letter) = str_remove(colnames(math_letter),'Math\\_')
+math_letter['subject'] = 'Math'
 por_letter = df_new[,c(1,52:54)]
 colnames(por_letter) = str_remove(colnames(por_letter),'Por\\_')
+por_letter['subject'] = 'Portuguese'
+combine = rbind(math_letter,por_letter)
 
+ggplot(combine,aes(axis1 = school, axis2 = Letter_Grade_G1, axis3 = Letter_Grade_G2, axis4 = Letter_Grade_G3)) +
+  geom_alluvium(aes(fill=subject))+ 
+  geom_stratum(width = 1/12, alpha=.5) +
+  geom_label(stat = "stratum", 
+             aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("school", "G1_Letter_Grade", "G2_Letter_Grade", "G3_Letter_Grade"),expand = c(.05, .05)) +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  ggtitle("Alluvial diagram of students' grades through academic year")
 
 ```
 
+The alluvial plot represents the change of students' grades over the academic year(From the first period to the final period). Most students get same letter grade for G1, G2 and G3 which implies that if a student perform well in an exam, he/she is likely to get a high grade in the next exam. In this case, we believe that students' grades in different periods are high correlated. We can verify this by compute the correlations. This time, we will use `Math_G1`, `Math_G2`, `Math_G3`, `Por_G1`, `Por_G2` and `Por_G3` which are numeric grade instead of letter grade.
 ```{r}
 pairs.panels(df[,c(31:33,50:52)],
              method = "pearson",
@@ -274,4 +288,4 @@ pairs.panels(df[,c(31:33,50:52)],
              ellipses = TRUE)
 ```
 
-The pair plot reveals that there are strong correlations within math/portuguese grades(approch 1) in difference period. And the correlation between a math grade and a portuguese grade is about 0.6. 
+The pair plot reveals that there are strong correlations within math/portuguese grades(approch 1) in difference period.

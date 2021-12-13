@@ -30,28 +30,7 @@ Let's firstly take a look at the boxplot of `age`.\
 
 #df = df[df$age<20 & df$Math_G2 != 0 & df$Math_G3 != 0 & df$Portuguese_G1 != 0 & df$Portuguese_G3!=0,]
 #df = df %>% mutate(Math_Grade = round((1/3)*Math_G1+(1/3)*Math_G2+(1/3)*Math_G3,2), Por_Grade = round((1/3)*Portuguese_G1+(1/3)*Portuguese_G2+(1/3)*Portuguese_G3,2))
-#df = df %>% mutate(Math_Letter_Grade = case_when(Math_G3 >= 18 & Math_G3 <= 20 ~ 'A',
-#                                        Math_G3 >= 14 & Math_G3 < 18 ~ 'B',
-#                                        Math_G3 >= 10 & Math_G3 < 14 ~ 'C',
-#                                        Math_G3 >= 4 & Math_G3 < 10 ~ 'D',
-#                                        Math_G3 >= 0 & Math_G3 < 4 ~ 'F' ),
-#         Por_Letter_Grade = case_when(Portuguese_G3 >= 18 & Portuguese_G3 <= 20 ~ 'A',
-#                                        Portuguese_G3 >= 14 & Portuguese_G3 < 18 ~ 'B',
-#                                        Portuguese_G3 >= 10 & Portuguese_G3 < 14 ~ 'C',
-#                                        Portuguese_G3 >= 4 & Portuguese_G3 < 10 ~ 'D',
-#                                        Portuguese_G3 >= 0 & Portuguese_G3 < 4 ~ 'F' ),
-#         absences.x = case_when(absences.x == 0 ~ 0,
-#                                absences.x >0 & absences.x <= 2 ~ 1,
-#                                absences.x >2 & absences.x <= 4 ~ 2,
-#                                absences.x >4 & absences.x <= 8 ~ 3,
-#                                absences.x >8 ~ 4),
-#         absences.y = case_when(absences.y == 0 ~ 0,
-#                                absences.y >0 & absences.y <= 2 ~ 1,
-#                                absences.y >2 & absences.y <= 4 ~ 2,
-#                                absences.y >4 ~ 3))
-#write.csv(df,'./data/clean/df.csv',row.names = FALSE)
-#df_new = df
-#df_new = df_new %>% mutate(Por_Letter_Grade_G1 = case_when(Portuguese_G1 >= 18 & Portuguese_G1 <= 20 ~ 'A',
+#df = df %>% mutate(Por_Letter_Grade_G1 = case_when(Portuguese_G1 >= 18 & Portuguese_G1 <= 20 ~ 'A',
 #                                        Portuguese_G1 >= 14 & Portuguese_G1 < 18 ~ 'B',
 #                                        Portuguese_G1 >= 10 & Portuguese_G1 < 14 ~ 'C',
 #                                        Portuguese_G1 >= 4 & Portuguese_G1 < 10 ~ 'D',
@@ -80,8 +59,18 @@ Let's firstly take a look at the boxplot of `age`.\
 #                                        Math_G3 >= 14 & Math_G3 < 18 ~ 'B',
 #                                        Math_G3 >= 10 & Math_G3 < 14 ~ 'C',
 #                                        Math_G3 >= 4 & Math_G3 < 10 ~ 'D',
-#                                        Math_G3 >= 0 & Math_G3 < 4 ~ 'F' ))
-#write.csv(df_new,"./data/clean/df_new.csv",row.names=FALSE)
+#                                        Math_G3 >= 0 & Math_G3 < 4 ~ 'F' ),
+#         absences.x = case_when(absences.x == 0 ~ 0,
+#                                absences.x >0 & absences.x <= 2 ~ 1,
+#                                absences.x >2 & absences.x <= 4 ~ 2,
+#                                absences.x >4 & absences.x <= 8 ~ 3,
+#                                absences.x >8 ~ 4),
+#         absences.y = case_when(absences.y == 0 ~ 0,
+#                                absences.y >0 & absences.y <= 2 ~ 1,
+#                                absences.y >2 & absences.y <= 4 ~ 2,
+#                                absences.y >4 ~ 3))
+#write.csv(df,'./data/clean/df.csv',row.names = FALSE)
+
 df = read.csv("./data/clean/df.csv")
 ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.title.y=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank())+coord_flip()
 ```
