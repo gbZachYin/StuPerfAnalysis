@@ -7,7 +7,6 @@ library(tidyverse)
 library(patchwork)
 ```
 
-## Check for Missing values
 The plot below shows that there is no missing value in all datasets we use.
 
 ```{r mv, echo = F, message = F, fig.height=8, fig.width=8}

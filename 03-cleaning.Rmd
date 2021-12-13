@@ -9,7 +9,7 @@ library(vcd)
 ## Data Merging
 Two datasets are provided regarding two distinct subjects: Mathematics (mat) and Portuguese language (por). To combine these two datasets, we spcified the following columns to be used for merging because these columns are basic information of students: \
 ```{r, echo = FALSE}
-Description = readr::read_csv(here::here("./data/Description.csv"))
+Description = readr::read_csv(here::here("./data/clean/description.csv"))
 knitr::kable(Description[c(1:12,20,22), ],
              row.names = F,font_size = 12)
 ```
@@ -62,7 +62,7 @@ If `absences` > thrid quartile, then convert it to 4. \
 
 ### Grades
 
-we convert all Math and Portuguese grades into categorical variables based on the following [grading system](https://en.wikipedia.org/wiki/Grading_systems_by_country#Portugal) for Portuguese high school: \
+We convert all Math and Portuguese grades into categorical variables based on the following [grading system](https://en.wikipedia.org/wiki/Grading_systems_by_country#Portugal) for Portuguese high school: \
 ```{r,echo=FALSE}
 gradingscale = readr::read_csv(here::here("./data/Grading_Scale.csv"))
 knitr::kable(gradingscale,

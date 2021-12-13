@@ -5,11 +5,11 @@ The dataset used in this project was obtained from UCI Machine Learning Reposito
 ## Data Merging
 This dataset approches student achievement in secondary education of two Portuguese schools. Two datasets are provided regarding the performance in two distinct subjects: Mathematics (mat) and Portuguese language (por).
 
-## Feature Information
+## Data Dictionary
 Attributes for both datasets(One for math grade and the other for Portuguese grade):
 
 ```{r, echo = FALSE}
-Description = readr::read_csv(here::here("./data/Description.csv"))
+Description = readr::read_csv(here::here("./data/clean/description.csv"))
 knitr::kable(Description[1:33, ], caption = "Columns and Descriptions",
              row.names = F,font_size = 12)
 ```
