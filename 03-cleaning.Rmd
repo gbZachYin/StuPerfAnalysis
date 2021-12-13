@@ -15,68 +15,26 @@ knitr::kable(Description[c(1:13,20,22), ],
 ```
 
 ## Data Cleaning
-After inspecting each variables carefully, we detected that there were outliers in `Age` and abnormal values in Math and Portuguese grades. \
+After carefully inspecting each variable, we detected that there are outliers in `Age` and abnormal values in Math and Portuguese grades. \
 Let's firstly take a look at the boxplot of `age`.\
 ```{r,echo=FALSE}
-#mat=read.table("./data/raw/student-mat.csv",sep=";",header=TRUE)
-#por=read.table("./data/raw/student-por.csv",sep=";",header=TRUE)
-#df=merge(mat,por,by=c("school","sex","age","address","famsize","Pstatus","Medu","Fedu","Mjob","Fjob","reason","nursery","internet","guardian","traveltime"))
-#colnames(df)[colnames(df) == 'G1.x'] = 'Math_G1'
-#colnames(df)[colnames(df) == 'G2.x'] = 'Math_G2'
-#colnames(df)[colnames(df) == 'G3.x'] = 'Math_G3'
-#colnames(df)[colnames(df) == 'G1.y'] = 'Portuguese_G1'
-#colnames(df)[colnames(df) == 'G2.y'] = 'Portuguese_G2'
-#colnames(df)[colnames(df) == 'G3.y'] = 'Portuguese_G3'
-
-#df = df[df$age<20 & df$Math_G2 != 0 & df$Math_G3 != 0 & df$Portuguese_G1 != 0 & df$Portuguese_G3!=0,]
-#df = df %>% mutate(Math_Grade = round((1/3)*Math_G1+(1/3)*Math_G2+(1/3)*Math_G3,2), Por_Grade = round((1/3)*Portuguese_G1+(1/3)*Portuguese_G2+(1/3)*Portuguese_G3,2))
-#df = df %>% mutate(Por_Letter_Grade_G1 = case_when(Portuguese_G1 >= 18 & Portuguese_G1 <= 20 ~ 'A',
-#                                        Portuguese_G1 >= 14 & Portuguese_G1 < 18 ~ 'B',
-#                                        Portuguese_G1 >= 10 & Portuguese_G1 < 14 ~ 'C',
-#                                        Portuguese_G1 >= 4 & Portuguese_G1 < 10 ~ 'D',
-#                                        Portuguese_G1 >= 0 & Portuguese_G1 < 4 ~ 'F'),
-#  Por_Letter_Grade_G2 = case_when(Portuguese_G2 >= 18 & Portuguese_G2 <= 20 ~ 'A',
-#                                        Portuguese_G2 >= 14 & Portuguese_G2 < 18 ~ 'B',
-#                                        Portuguese_G2 >= 10 & Portuguese_G2 < 14 ~ 'C',
-#                                        Portuguese_G2 >= 4 & Portuguese_G2 < 10 ~ 'D',
-#                                        Portuguese_G2 >= 0 & Portuguese_G2 < 4 ~ 'F'),
-#  Por_Letter_Grade_G3 = case_when(Portuguese_G3 >= 18 & Portuguese_G3 <= 20 ~ 'A',
-#                                        Portuguese_G3 >= 14 & Portuguese_G3 < 18 ~ 'B',
-#                                        Portuguese_G3 >= 10 & Portuguese_G3 < 14 ~ 'C',
-#                                        Portuguese_G3 >= 4 & Portuguese_G3 < 10 ~ 'D',
-#                                        Portuguese_G3 >= 0 & Portuguese_G3 < 4 ~ 'F'),
-#  Math_Letter_Grade_G1 = case_when(Math_G1 >= 18 & Math_G1 <= 20 ~ 'A',
-#                                        Math_G1 >= 14 & Math_G1 < 18 ~ 'B',
-#                                        Math_G1 >= 10 & Math_G1 < 14 ~ 'C',
-#                                        Math_G1 >= 4 & Math_G1 < 10 ~ 'D',
-#                                        Math_G1 >= 0 & Math_G1 < 4 ~ 'F' ),
-#  Math_Letter_Grade_G2 = case_when(Math_G2 >= 18 & Math_G2 <= 20 ~ 'A',
-#                                        Math_G2 >= 14 & Math_G2 < 18 ~ 'B',
-#                                        Math_G2 >= 10 & Math_G2 < 14 ~ 'C',
-#                                        Math_G2 >= 4 & Math_G2 < 10 ~ 'D',
-#                                        Math_G2 >= 0 & Math_G2 < 4 ~ 'F' ),
-#  Math_Letter_Grade_G3 = case_when(Math_G3 >= 18 & Math_G3 <= 20 ~ 'A',
-#                                        Math_G3 >= 14 & Math_G3 < 18 ~ 'B',
-#                                        Math_G3 >= 10 & Math_G3 < 14 ~ 'C',
-#                                        Math_G3 >= 4 & Math_G3 < 10 ~ 'D',
-#                                        Math_G3 >= 0 & Math_G3 < 4 ~ 'F' ),
-#         absences.x = case_when(absences.x == 0 ~ 0,
-#                                absences.x >0 & absences.x <= 2 ~ 1,
-#                                absences.x >2 & absences.x <= 4 ~ 2,
-#                                absences.x >4 & absences.x <= 8 ~ 3,
-#                                absences.x >8 ~ 4),
-#         absences.y = case_when(absences.y == 0 ~ 0,
-#                                absences.y >0 & absences.y <= 2 ~ 1,
-#                                absences.y >2 & absences.y <= 4 ~ 2,
-#                                absences.y >4 ~ 3))
-#write.csv(df,'./data/clean/df.csv',row.names = FALSE)
-
-df = read.csv("./data/clean/df.csv")
+#Data Merging
+mat=read.table("./data/raw/student-mat.csv",sep=";",header=TRUE)
+por=read.table("./data/raw/student-por.csv",sep=";",header=TRUE)
+df=merge(mat,por,by=c("school","sex","age","address","famsize","Pstatus","Medu","Fedu","Mjob","Fjob","reason","nursery","internet","guardian","traveltime"))
+colnames(df)[colnames(df) == 'G1.x'] = 'Math_G1'
+colnames(df)[colnames(df) == 'G2.x'] = 'Math_G2'
+colnames(df)[colnames(df) == 'G3.x'] = 'Math_G3'
+colnames(df)[colnames(df) == 'G1.y'] = 'Portuguese_G1'
+colnames(df)[colnames(df) == 'G2.y'] = 'Portuguese_G2'
+colnames(df)[colnames(df) == 'G3.y'] = 'Portuguese_G3'
+#Boxplot of age
 ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.title.y=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank())+coord_flip()
 ```
 
-Most students leave secondary school at 16 or 17. There may be some exceptions so that age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which includes age = 20 or age = 22. \
+Given that most students leave secondary school at 16 or 17. There may be some exceptions so that age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which include age = 20 or age = 22. \
 Next, let's move to Math and Portuguese grades in different period. \
+\
 ```{r,echo=FALSE}
 math_long = df %>% pivot_longer(c(Math_G1,Math_G2,Math_G3), names_to = 'Period', values_to = 'Grade')
 plot_math = ggplot(math_long,aes(x = Grade)) +
@@ -93,6 +51,51 @@ grid.arrange(plot_math, plot_portuguese, nrow = 2)
 ```
 
 There are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when a student missed the exam or he/she cheated in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0. 
+
+```{r}
+# Data cleaning
+df = df[df$age<20 & df$Math_G2 != 0 & df$Math_G3 != 0 & df$Portuguese_G1 != 0 & df$Portuguese_G3!=0,]
+df = df %>% mutate(Por_Letter_Grade_G1 = case_when(Portuguese_G1 >= 18 & Portuguese_G1 <= 20 ~ 'A',
+                                        Portuguese_G1 >= 14 & Portuguese_G1 < 18 ~ 'B',
+                                        Portuguese_G1 >= 10 & Portuguese_G1 < 14 ~ 'C',
+                                        Portuguese_G1 >= 4 & Portuguese_G1 < 10 ~ 'D',
+                                        Portuguese_G1 >= 0 & Portuguese_G1 < 4 ~ 'F'),
+  Por_Letter_Grade_G2 = case_when(Portuguese_G2 >= 18 & Portuguese_G2 <= 20 ~ 'A',
+                                        Portuguese_G2 >= 14 & Portuguese_G2 < 18 ~ 'B',
+                                        Portuguese_G2 >= 10 & Portuguese_G2 < 14 ~ 'C',
+                                        Portuguese_G2 >= 4 & Portuguese_G2 < 10 ~ 'D',
+                                        Portuguese_G2 >= 0 & Portuguese_G2 < 4 ~ 'F'),
+  Por_Letter_Grade_G3 = case_when(Portuguese_G3 >= 18 & Portuguese_G3 <= 20 ~ 'A',
+                                        Portuguese_G3 >= 14 & Portuguese_G3 < 18 ~ 'B',
+                                        Portuguese_G3 >= 10 & Portuguese_G3 < 14 ~ 'C',
+                                        Portuguese_G3 >= 4 & Portuguese_G3 < 10 ~ 'D',
+                                        Portuguese_G3 >= 0 & Portuguese_G3 < 4 ~ 'F'),
+  Math_Letter_Grade_G1 = case_when(Math_G1 >= 18 & Math_G1 <= 20 ~ 'A',
+                                        Math_G1 >= 14 & Math_G1 < 18 ~ 'B',
+                                        Math_G1 >= 10 & Math_G1 < 14 ~ 'C',
+                                        Math_G1 >= 4 & Math_G1 < 10 ~ 'D',
+                                        Math_G1 >= 0 & Math_G1 < 4 ~ 'F' ),
+  Math_Letter_Grade_G2 = case_when(Math_G2 >= 18 & Math_G2 <= 20 ~ 'A',
+                                        Math_G2 >= 14 & Math_G2 < 18 ~ 'B',
+                                        Math_G2 >= 10 & Math_G2 < 14 ~ 'C',
+                                        Math_G2 >= 4 & Math_G2 < 10 ~ 'D',
+                                        Math_G2 >= 0 & Math_G2 < 4 ~ 'F' ),
+  Math_Letter_Grade_G3 = case_when(Math_G3 >= 18 & Math_G3 <= 20 ~ 'A',
+                                        Math_G3 >= 14 & Math_G3 < 18 ~ 'B',
+                                        Math_G3 >= 10 & Math_G3 < 14 ~ 'C',
+                                        Math_G3 >= 4 & Math_G3 < 10 ~ 'D',
+                                        Math_G3 >= 0 & Math_G3 < 4 ~ 'F' ),
+         absences.x = case_when(absences.x == 0 ~ 0,
+                                absences.x >0 & absences.x <= 2 ~ 1,
+                                absences.x >2 & absences.x <= 4 ~ 2,
+                                absences.x >4 & absences.x <= 8 ~ 3,
+                                absences.x >8 ~ 4),
+         absences.y = case_when(absences.y == 0 ~ 0,
+                                absences.y >0 & absences.y <= 2 ~ 1,
+                                absences.y >2 & absences.y <= 4 ~ 2,
+                                absences.y >4 ~ 3))
+write.csv(df,'./data/clean/df.csv',row.names = FALSE)
+```
 
 ## Variable Transformation
 
