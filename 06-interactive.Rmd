@@ -6,7 +6,7 @@ Click [here](https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/3ad151d3914491
 ## Descriptions
 
 The interactive component of the project is mainly built with d3.js version 6 and Danfo.js version 3.3. The former is for plot and the latter is for dataframe processing in JavaScript. The raw HTML code is uploaded to the project Github repo named [ic.html](https://raw.githubusercontent.com/gbZachYin/StuPerfAnalysis/main/ic.html). 
-The collapsible tree and dynamic barchart below it display how the distribution of students' final letter grade varies as the tree structure changes.
+The collapsible tree and dynamic barchart below display how the distribution of students' final letter grade varies as the tree structure changes.
 
 ## Instructions for using the plot
 
