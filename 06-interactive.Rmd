@@ -16,6 +16,8 @@ There are three deterministic variables (i.e. Mother’s education level, number
 2. Users can either expand or collapse a certain node. 
 3. The tree can be viewed as a filter. For instance, a tree with nodes failures-0 and SchoolSup-Yes expanded meaning that the final grade distribution for students who have no courses failed in the past and receive educational support are shown.
 
+![](./iceg.png){width=95%}
+
 References:
 
 1. Mike Bostock: Collapsible Tree (https://bl.ocks.org/mbostock/4339083)
