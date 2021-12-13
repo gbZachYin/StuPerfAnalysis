@@ -27,3 +27,5 @@ link-to-the-interactive-graph
 descriptions
 instructions-for-using-the-map
 instructions-for-using-the-plot
+absences
+grades

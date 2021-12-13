@@ -6,7 +6,7 @@ The dataset used in this project was obtained from UCI Machine Learning Reposito
 This dataset approches student achievement in secondary education of two Portuguese schools. Two datasets are provided regarding the performance in two distinct subjects: Mathematics (mat) and Portuguese language (por).
 
 ## Feature Information
-Attributes for both datasets(One for math grade and the other for portuguese grade):
+Attributes for both datasets(One for math grade and the other for Portuguese grade):
 
 ```{r, echo = FALSE}
 Description = readr::read_csv(here::here("./data/Description.csv"))
