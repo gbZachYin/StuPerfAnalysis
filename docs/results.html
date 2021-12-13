@@ -181,7 +181,7 @@ According to the plot above, we can find that students’ failmy education level
 <p><code>failures</code> (number of past class failures: n if 1&lt;=n&lt;3, else 4): The mosaic plot shows that for students who got a grade of A or B, most of them never failed any courses, and few of them failed no more than 2 courses in the past. However, the proportion of students who failed more than 3 courses in the past increases rapidly in the class of grade C or D. This is a logical truth that a student with failures in the past class is prone to get lower grade in the future class.<br />
 </p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" />
-<code>schoolsup</code>(extra educational support): It is clear that, the proportion of students who get extra educational support increases when <code>Math_Letter_Grade</code> goes from A to D. This seems reasonable because only those students who got low grade need extra educational support to help them improve.<br />
+<code>schoolsup</code>(extra educational support): It is clear that, the proportion of students who get extra educational support increases when <code>Math_Letter_Grade</code> goes from A to D. This seems reasonable because students who got low grade need extra educational support to help them improve.<br />
 </p>
 <p><code>absences</code> (absences from school:0 - none, 1 - less than first quantile, 2 - less than second quantile, 3 - less than thrid quantile, 4 - more than third quantile): The plot shows something unexpected. If we only focus on grade B, C and D, it indicates a trend that, fewer absences from school leads to higher grade in math class. But when we move to grade A, a reverse trend applies. We can see that students with grade A are more likely to be absent from school than students with grade B.<br />
 </p>
@@ -196,7 +196,7 @@ According to the plot above, we can find that students’ failmy education level
 <p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p><code>failures</code> (number of past class failures: n if 1&lt;=n&lt;3, else 4): There is a same trend as how <code>failures</code> affect students’ performance on math. We can’t see much difference in class A and class B regarding the proportion of different class of <code>failures</code>. When we move to class C, D and F, the number of students who failed more than 2 classes in the past increases dramatically. Hence, here ’s the same idea that a student with failures in the past class is prone to get lower grade in the future class.<br />
 </p>
-<p><code>schoolsup</code>(extra educational support): Same as the relationship between <code>schoolsup</code> and <code>Math_Letter_Grade</code>, the proportion of students who get extra educational support increases when <code>Por_Letter_Grade</code> goes from A to D. This seems reasonable because only those students who got low grade need extra educational support to help them improve.<br />
+<p><code>schoolsup</code>(extra educational support): Same as the relationship between <code>schoolsup</code> and <code>Math_Letter_Grade</code>, the proportion of students who get extra educational support increases when <code>Por_Letter_Grade</code> goes from A to D. This seems reasonable because students who got low grade need extra educational support to help them improve.<br />
 </p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p><code>higher</code> (wants to take higher education): The plot shows that students who do not want to pursue a higher level education finally got grade C or D. We cannot say much about a student who want to take higher education, because he/she is equal likely to get grade A, B or C given that the proportion of <code>higher = yes</code> is almost the same in grade A, B and C. However, if a student do not want to take higher education, our data supports that he/she is likely to get a grade C or D. Grade F may be an exception here and we cannot conclude anything for it given that there is only one student get grade F.<br />
@@ -217,6 +217,8 @@ According to the plot above, we can find that students’ failmy education level
 <h2><span class="header-section-number">5.3</span> Grade in Different Period</h2>
 <p>In this section, we are interested in the Math and Portuguese in different period. We tend to believe that there should be a strong relationship among the exam grade in different period, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well. This time, we will use <code>Math_G1</code>, <code>Math_G2</code>, <code>Math_G3</code>, <code>Por_G1</code>, <code>Por_G2</code> and <code>Por_G3</code> which are numeric grade instead of letter grade.<br />
 </p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>The pair plot reveals that there are strong correlations within math/portuguese grades(approch 1) in difference period. And the correlation between a math grade and a portuguese grade is about 0.6.</p>
 
 </div>
 </div>

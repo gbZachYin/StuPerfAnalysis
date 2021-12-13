@@ -1,2 +1,5 @@
 # Conclusion
 
+After carefully exploring and visualizing our dataset, we conclude that:\
+1. `Medu`(mother's education) has a positive impact on students' math grade while `absences`(absence from school), `schoolsup`(extra educational support) and `failures`(number of failures in the past classes) have negative impact on student's math grade.\
+2. `studytime` (weekly study time), `higher` (wants to take higher grade) and `Medu`(mother's education) have positive impact on students' Portuguese language grade while `freetime`(free time after school), `goout`(frequency of going out with friends), `health`(current health status), `schoolsup`(extra educational support), `Dalc`(alcohol consumption in weekday) and `failures`(number of failures in the past classes) have negative impact on students' Portuguese language grade. \

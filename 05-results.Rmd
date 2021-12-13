@@ -229,7 +229,7 @@ grid.arrange(p1,p2,ncol=2)
 ```{r}
 grid.arrange(p3,p4,ncol=2)
 ```
-`schoolsup`(extra educational support): It is clear that, the proportion of students who get extra educational support increases when `Math_Letter_Grade` goes from A to D. This seems reasonable because only those students who got low grade need extra educational support to help them improve.\
+`schoolsup`(extra educational support): It is clear that, the proportion of students who get extra educational support increases when `Math_Letter_Grade` goes from A to D. This seems reasonable because students who got low grade need extra educational support to help them improve.\
 
 `absences` (absences from school:0 - none, 1 - less than first quantile, 2 - less than second quantile, 3 - less than thrid quantile, 4 - more than third quantile): The plot shows something unexpected. If we only focus on grade B, C and D, it indicates a trend that, fewer absences from school leads to higher grade in math class. But when we move to grade A, a reverse trend applies. We can see that students with grade A are more likely to be absent from school than students with grade B. \
 
@@ -257,7 +257,7 @@ grid.arrange(p7,p8,ncol=2)
 
 `failures` (number of past class failures: n if 1<=n<3, else 4): There is a same trend as how `failures` affect students' performance on math. We can't see much difference in class A and class B regarding the proportion of different class of `failures`. When we move to class C, D and F, the number of students who failed more than 2 classes in the past increases dramatically. Hence, here 's the same idea that a student with failures in the past class is prone to get lower grade in the future class. \
 
-`schoolsup`(extra educational support): Same as the relationship between `schoolsup` and `Math_Letter_Grade`, the proportion of students who get extra educational support increases when `Por_Letter_Grade` goes from A to D. This seems reasonable because only those students who got low grade need extra educational support to help them improve. \
+`schoolsup`(extra educational support): Same as the relationship between `schoolsup` and `Math_Letter_Grade`, the proportion of students who get extra educational support increases when `Por_Letter_Grade` goes from A to D. This seems reasonable because students who got low grade need extra educational support to help them improve. \
 
 ```{r}
 grid.arrange(p9,p10,ncol=2)
@@ -286,4 +286,12 @@ grid.arrange(p13)
 
 In this section, we are interested in the Math and Portuguese in different period. We tend to believe that there should be a strong relationship among the exam grade in different period, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well. This time, we will use `Math_G1`, `Math_G2`, `Math_G3`, `Por_G1`, `Por_G2` and `Por_G3` which are numeric grade instead of letter grade. \
 
+```{r}
+pairs.panels(df[,c(31:33,50:52)],
+             method = "pearson",
+             hist.col = "lightblue",
+             density = TRUE, 
+             ellipses = TRUE)
+```
 
+The pair plot reveals that there are strong correlations within math/portuguese grades(approch 1) in difference period. And the correlation between a math grade and a portuguese grade is about 0.6. 
