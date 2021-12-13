@@ -64,7 +64,7 @@ If `absences` > thrid quartile, then convert it to 4. \
 
 We convert all Math and Portuguese grades into categorical variables based on the following [grading system](https://en.wikipedia.org/wiki/Grading_systems_by_country#Portugal) for Portuguese high school: \
 ```{r,echo=FALSE}
-gradingscale = readr::read_csv(here::here("./data/Grading_Scale.csv"))
+gradingscale = readr::read_csv(here::here("./data/clean/grading_scale.csv"))
 knitr::kable(gradingscale,
              row.names = F,font_size = 12)
 ```
