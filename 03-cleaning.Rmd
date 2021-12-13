@@ -18,8 +18,8 @@ knitr::kable(Description[c(1:12,20,22), ],
 After inspecting each variables carefully, we detected that there were outliers in `Age` and abnormal values in Math and Portuguese grades. \
 Let's firstly take a look at the boxplot of `age`.\
 ```{r,echo=FALSE}
-mat=read.table("./data/student-mat.csv",sep=";",header=TRUE)
-por=read.table("./data/student-por.csv",sep=";",header=TRUE)
+mat=read.table("./data/raw/student-mat.csv",sep=";",header=TRUE)
+por=read.table("./data/raw/student-por.csv",sep=";",header=TRUE)
 df=merge(mat,por,by=c("school","sex","age","address","famsize","Pstatus","Medu","Fedu","Mjob","Fjob","reason","nursery","internet","guardian"))
 colnames(df)[colnames(df) == 'G1.x'] = 'Math_G1'
 colnames(df)[colnames(df) == 'G2.x'] = 'Math_G2'

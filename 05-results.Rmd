@@ -140,8 +140,8 @@ In this section, we will analyze factors that affect students' academic performa
 
 
 ```{r}
-mat=read.table("./data/student-mat.csv",sep=";",header=TRUE)
-por=read.table("./data/student-por.csv",sep=";",header=TRUE)
+mat=read.table("./data/raw/student-mat.csv",sep=";",header=TRUE)
+por=read.table("./data/raw/student-por.csv",sep=";",header=TRUE)
 df=merge(mat,por,by=c("school","sex","age","address","famsize","Pstatus","Medu","Fedu","Mjob","Fjob","reason","nursery","internet","guardian"))
 colnames(df)[colnames(df) == 'G1.x'] = 'Math_G1'
 colnames(df)[colnames(df) == 'G2.x'] = 'Math_G2'
