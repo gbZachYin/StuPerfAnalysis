@@ -1,3 +1,4 @@
 # Interactive component
 
-
+## Link to the interactive graph
+Click [here](https://bl.ocks.org/ybliu9/raw/8d43f3f08508aa7bc70d6dcc40c57f68/11c5476acb05ffe563cdbd156d4fb3ed86f71fe0/) or the link below: 
