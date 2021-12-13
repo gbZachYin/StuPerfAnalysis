@@ -3,11 +3,22 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/danfojs@0.3.3/lib/bundle.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-2.2.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <style>
     .node circle {
         fill: #fff;
-        stroke: steelblue;
+        stroke: #69b3a2;
         stroke-width: 3px;
     }
 
@@ -20,26 +31,76 @@
         stroke: #ccc;
         stroke-width: 2px;
     }
+
+    .float-parent-element {
+        width: 50%;
+    }
+
+    .float-child-element {
+        float: left;
+        width: 50%;
+    }
 </style>
 
 <body>
-    <div id="tree-container"></div>
+
+    <div id="tree-container" class="float-child-element"></div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" onclick="Mathx()">Math</button>
+        <button type="button" class="btn btn-default" onclick="Por()">Portuguese</button>
+    </div>
+
     <div id="bar-container"></div>
     <script>
+        let data_bar = [
+            { "group": "A", "value": 17 },
+            { "group": "B", "value": 81 },
+            { "group": "C", "value": 151 },
+            { "group": "D", "value": 83 },
+            { "group": "F", "value": 0 }];
+        let fa = "failures.x";
+        let sc = "schoolsup.x";
+        let gr = "Math_Letter_Grade_G3";
 
-        // create 2 data_set
-        const data_bar = [
-            { group: "A", value: 4 },
-            { group: "B", value: 16 },
-            { group: "C", value: 8 },
-            { group: "D", value: 2 },
-            { group: "E", value: 3 }
-        ];
+
+        function Mathx() {
+            data_bar = [
+                { "group": "A", "value": 17 },
+                { "group": "B", "value": 81 },
+                { "group": "C", "value": 151 },
+                { "group": "D", "value": 83 },
+                { "group": "F", "value": 0 }];
+            fa = "failures.x";
+            sc = "schoolsup.x";
+            gr = "Math_Letter_Grade_G3"
+
+            console.log("math");
+            updatebar(data_bar);
+            d3.select("#tree-container").select("svg").remove();
+            tree()
+        }
+        function Por() {
+            data_bar = [
+                { "group": "A", "value": 11 },
+                { "group": "B", "value": 112 },
+                { "group": "C", "value": 192 },
+                { "group": "D", "value": 16 },
+                { "group": "F", "value": 1 }];
+            fa = "failures.y";
+            sc = "schoolsup.y";
+            gr = "Por_Letter_Grade_G3"
+
+            console.log("por");
+            updatebar(data_bar)
+            d3.select("#tree-container").select("svg").remove();
+            tree()
+        }
+
 
 
         // set the dimensions and margins of the graph
         const margin = { top: 30, right: 30, bottom: 70, left: 60 },
-            width = 800 - margin.left - margin.right,
+            width = 900 - margin.left - margin.right,
             height = 300 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
@@ -67,18 +128,15 @@
         function updatebar(data) {
 
             var ymax = 0;
-            console.log(data);
             for (i = 0; i < data.length; i++) {
                 if (ymax < data[i]['value']) {
                     ymax = data[i]['value']
-
                 }
-
             }
             ymax = Math.ceil(ymax / 10) * 10
             d3.select(".myYaxis").remove();
             var y = d3.scaleLinear()
-                .domain([0, Math.max(20, ymax)])
+                .domain([0, Math.max(10, ymax)])
                 .range([height, 0]);
             svg.append("g")
                 .attr("class", "myYaxis")
@@ -102,42 +160,166 @@
 
         tree()
         let status = {
-            "school": true,
-            "MS": false,
-            "GP": false,
-            "Sex-M": false,
-            "Sex-F": false,
-            "higher-no": false,
-            "higher-yes": false
+            "Medu": true,
+            "M0": false,
+            "M1": false,
+            "M2": false,
+            "M3": false,
+            "M4": false,
+            "F0": false,
+            "F1": false,
+            "F2": false,
+            "F3": false,
+            "SSY": false,
+            "SSN": false,
         }
         function tree() {
             var treeData =
             {
-                "name": "school",
+                "name": "Medu Level",
                 "children": [
                     {
-                        "name": "MS",
+                        "name": "0",
                         "children": [
                             {
-                                "name": "Sex-M",
-                                "children": [{ "name": "higher-no" }, { "name": "higher-yes" }]
+                                "name": "Failure-0",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
                             },
                             {
-                                "name": "Sex-F",
-                                "children": [{ "name": "higher-no" }, { "name": "higher-yes" }]
+                                "name": "Failure-1",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-2",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-3",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
                             }
                         ]
                     },
                     {
-                        "name": "GP",
+                        "name": "1",
                         "children": [
                             {
-                                "name": "Sex-M",
-                                "children": [{ "name": "higher-no" }, { "name": "higher-yes" }]
+                                "name": "Failure-0",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
                             },
                             {
-                                "name": "Sex-F",
-                                "children": [{ "name": "higher-no" }, { "name": "higher-yes" }]
+                                "name": "Failure-1",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-2",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-3",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "2",
+                        "children": [
+                            {
+                                "name": "Failure-0",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-1",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-2",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-3",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "3",
+                        "children": [
+                            {
+                                "name": "Failure-0",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-1",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-2",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-3",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "4",
+                        "children": [
+                            {
+                                "name": "Failure-0",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-1",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-2",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
+                            },
+                            {
+                                "name": "Failure-3",
+                                "children": [
+                                    { "name": "SchoolSup-Yes", "children": [{ "name": "END" }] },
+                                    { "name": "SchoolSup-No", "children": [{ "name": "END" }] }]
                             }
                         ]
                     }
@@ -218,7 +400,7 @@
                     .attr('class', 'node')
                     .attr('r', 1e-6)
                     .style("fill", function (d) {
-                        return d._children ? "lightsteelblue" : "#fff";
+                        return d._children ? "#69b3a2" : "#fff";
                     });
 
                 // Add labels for the nodes
@@ -246,7 +428,7 @@
                 nodeUpdate.select('circle.node')
                     .attr('r', 10)
                     .style("fill", function (d) {
-                        return d._children ? "lightsteelblue" : "#fff";
+                        return d._children ? "#69b3a2" : "#fff";
                     })
                     .attr('cursor', 'pointer');
 
@@ -308,9 +490,9 @@
                 function diagonal(s, d) {
 
                     path = `M ${s.y} ${s.x}
-                            C ${(s.y + d.y) / 2} ${s.x},
-                              ${(s.y + d.y) / 2} ${d.x},
-                              ${d.y} ${d.x}`
+                                C ${(s.y + d.y) / 2} ${s.x},
+                                ${(s.y + d.y) / 2} ${d.x},
+                                ${d.y} ${d.x}`
 
                     return path
                 }
@@ -320,11 +502,23 @@
                 // Toggle children on click.
                 function click(event, d) {
                     if (d.children) {
+                        d.children.forEach(function (element) {
+
+                            collapse(element);
+
+                        });
                         d._children = d.children;
                         d.children = null;
                     } else {
                         d.children = d._children;
                         d._children = null;
+                    }
+                    if (d.parent) {
+                        d.parent.children.forEach(function (element) {
+                            if (d !== element) {
+                                collapse(element);
+                            }
+                        });
                     }
                     update(d);
                     upstatus(d);
@@ -334,44 +528,83 @@
                 function upstatus(d) {
 
                     if (d._children) {
-                        // expand
-                        d.descendants().forEach(function (d) { status[d.data.name] = false; });
-                    } else {
                         // collasp
-                        status[d.data.name] = true;
+                        for (key in status) { status[key] = false; }
+
+                        // Fx
+                        if (d.data.name.startsWith("F")) { status["M" + d.parent.data.name] = true; }
+
+                        // SS
+                        if (d.data.name.startsWith("S")) {
+
+                            status["M" + d.parent.parent.data.name] = true;
+                            status["F" + d.parent.data.name.charAt(d.parent.data.name.length - 1)] = true;
+                        }
+                        status["Medu"] = true;
+
+                    } else {
+                        // expand
+                        if (d.data.name == "Medu Level") { status["Medu"] = true; }
+                        // Mx
+                        if (d.data.name.length == 1) {
+                            for (key in status) {
+                                if (key == "M" + d.data.name) {
+                                    status[key] = true;
+                                } else { status[key] = false; }
+                            }
+                        }
+
+                        // Fx
+                        if (d.data.name.startsWith("F")) {
+                            for (key in status) {
+                                node = "F" + d.data.name.charAt(d.data.name.length - 1)
+                                if (key == node) {
+                                    status[key] = true;
+                                } else { status[key] = false; }
+                            }
+
+                            status["M" + d.parent.data.name] = true;
+                        }
+
+                        // SS
+                        if (d.data.name.startsWith("S")) {
+                            for (key in status) {
+                                node = "SS" + d.data.name.charAt(10)
+                                if (key == node) {
+                                    status[key] = true;
+                                } else { status[key] = false; }
+                            }
+
+                            status["M" + d.parent.parent.data.name] = true;
+                            status["F" + d.parent.data.name.charAt(d.parent.data.name.length - 1)] = true;
+                        }
+                        status["Medu"] = true;
                     }
                 }
+
                 function updata() {
-                    dfd.read_csv("https://raw.githubusercontent.com/gbZachYin/StuPerfAnalysis/main/data/stu-mat.csv")
+                    dfd.read_csv("https://raw.githubusercontent.com/gbZachYin/StuPerfAnalysis/main/data/clean/df.csv")
                         .then(df => {
-
-                            if (status["MS"]) {
-                                df = df.query({ column: "school", is: "==", to: "MS" })
+                            for (key in status) {
+                                if (status[key]) {
+                                    if (key.length == 2) {
+                                        if (key.startsWith("M")) {
+                                            df.query({ column: "Medu", is: "==", to: key.charAt(1), inplace: true })
+                                        } else {
+                                            df.query({ column: fa, is: "==", to: key.charAt(1), inplace: true })
+                                        }
+                                    }
+                                    if (key.length == 3) {
+                                        if (key.charAt(key.length - 1) == "Y") {
+                                            df.query({ column: sc, is: "==", to: "yes", inplace: true })
+                                        } else {
+                                            df.query({ column: sc, is: "==", to: "no", inplace: true })
+                                        }
+                                    }
+                                }
                             }
 
-                            if (status["GP"]) {
-                                df = df.query({ column: "school", is: "==", to: "GP" })
-                            }
-
-                            if (status["Sex-M"]) {
-                                df = df.query({ column: "1", is: "==", to: "M" });
-                            }
-
-                            if (status["Sex-F"]) {
-                                df = df.query({ column: "1", is: "==", to: "F" })
-                            }
-                            apply_func = (x) => {
-                                if (x >= 18) { return 'A' }
-                                if (x >= 16 && x < 18) { return 'B' }
-                                if (x >= 14 && x < 16) { return 'C' }
-                                if (x >= 12 && x < 14) { return 'D' }
-                                if (x < 12) { return 'E' }
-                            }
-                            if (df.shape[0] == 396) {
-                                col = 'G3'
-                            } else { col = '32' }
-                            console.log(df.shape);
-                            output = df[col].apply(apply_func).value_counts();
+                            output = df[gr].value_counts();
                             index = output.index;
 
                             output = output.to_json({
@@ -382,8 +615,8 @@
                             for (i = 0; i < index.length; i++) {
                                 ddata.push({ group: index[i], value: output[i] });
                             }
+                            console.log(ddata);
                             updatebar(ddata)
-
                         })
                 }
             }

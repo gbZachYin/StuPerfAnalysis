@@ -1,10 +1,10 @@
 tab:unnamed-chunk-3
 introduction
 data-sources
-data-merging
+overview
 data-dictionary
 data-cleaning-and-transformation
-data-merging-1
+data-merging
 data-cleaning
 variable-transformation
 absences

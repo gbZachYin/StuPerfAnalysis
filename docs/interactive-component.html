@@ -76,12 +76,12 @@
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#data-merging"><i class="fa fa-check"></i><b>2.1</b> Data Merging</a></li>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-dictionary"><i class="fa fa-check"></i><b>2.2</b> Data Dictionary</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>3</b> Data cleaning and transformation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#data-merging-1"><i class="fa fa-check"></i><b>3.1</b> Data Merging</a></li>
+<li class="chapter" data-level="3.1" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#data-merging"><i class="fa fa-check"></i><b>3.1</b> Data Merging</a></li>
 <li class="chapter" data-level="3.2" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#data-cleaning"><i class="fa fa-check"></i><b>3.2</b> Data Cleaning</a></li>
 <li class="chapter" data-level="3.3" data-path="data-cleaning-and-transformation.html"><a href="data-cleaning-and-transformation.html#variable-transformation"><i class="fa fa-check"></i><b>3.3</b> Variable Transformation</a>
 <ul>
@@ -136,21 +136,22 @@
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
 <div id="link-to-the-interactive-graph" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Link to the interactive graph</h2>
-<p>Click <a href="https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/5af92c3da9a60bb52579881359194ec4aa159e32/ic.html">here</a> or the link below: <a href="https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/5af92c3da9a60bb52579881359194ec4aa159e32/ic.html" class="uri">https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/5af92c3da9a60bb52579881359194ec4aa159e32/ic.html</a></p>
+<p>Click <a href="https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/3ad151d391449183e57fb2b7bfa18392a36c2dd6/ic.html">here</a> or the link below: <a href="https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/3ad151d391449183e57fb2b7bfa18392a36c2dd6/ic.html" class="uri">https://rawcdn.githack.com/gbZachYin/StuPerfAnalysis/3ad151d391449183e57fb2b7bfa18392a36c2dd6/ic.html</a></p>
 </div>
 <div id="descriptions" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Descriptions</h2>
-<p>The interactive component of the project is mainly built with d3.js version 6 and Danfo.js version 3.3. The former is for plot and the latter is for dataframe processing in JavaScript. The raw html code is uploaded to the project github repo named <a href="https://raw.githubusercontent.com/gbZachYin/StuPerfAnalysis/main/ic.html">ic.html</a>.
-The collasiable tree and dynamic barchart below it dispaly how the distribution students’ final letter grade varies as the tree structure changes.</p>
+<p>The interactive component of the project is mainly built with d3.js version 6 and Danfo.js version 3.3. The former is for plot and the latter is for dataframe processing in JavaScript. The raw HTML code is uploaded to the project Github repo named <a href="https://raw.githubusercontent.com/gbZachYin/StuPerfAnalysis/main/ic.html">ic.html</a>.
+The collapsible tree and dynamic barchart below display how the distribution of students’ final letter grade varies as the tree structure changes.</p>
 </div>
 <div id="instructions-for-using-the-plot" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Instructions for using the plot</h2>
-<p>There are tree deterministic variables (<code>school</code>, <code>x</code>, and <code>y</code> that have the strongest association with final grade among all) with which users can play. The plot is initialized with all nodes being collapsed except for <code>school</code> in the tree and the distribution of all students’ final grade in the bar chart.</p>
+<p>There are three deterministic variables (i.e. Mother’s education level, number of past class failures, and extra educational support) that have the strongest association with final grades regardless of the subject. The plot is initialized with all nodes being collapsed except for <code>Medu</code> in the tree and the distribution of all students’ final grades for <strong>Math</strong> in the bar chart.</p>
 <ol style="list-style-type: decimal">
-<li>Users can click to either expand or collapse a certain nodes.</li>
-<li>Users can view the tree as a filter. For instance, a tree with nodes x and y expanded meaning that a filter with x=x1 and y=y1 is applied to the whole dataset.</li>
-<li>Users can hover the mouse over a bar to see the exact number of students getting a certain grade under the current tree structure.</li>
+<li>Users can click the button at the top to choose the subject (Math or Portuguese).</li>
+<li>Users can either expand or collapse a certain node.</li>
+<li>The tree can be viewed as a filter. For instance, a tree with nodes failures-0 and SchoolSup-Yes expanded meaning that the final grade distribution for students who have no courses failed in the past and receive educational support are shown.</li>
 </ol>
+<p><img src="iceg.png" style="width:95.0%" /></p>
 <p>References:</p>
 <ol style="list-style-type: decimal">
 <li><p>Mike Bostock: Collapsible Tree (<a href="https://bl.ocks.org/mbostock/4339083" class="uri">https://bl.ocks.org/mbostock/4339083</a>)</p></li>
