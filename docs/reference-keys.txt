@@ -29,3 +29,8 @@ instructions-for-using-the-plot
 conclusion
 reason-address-school
 variables-related-to-math-grade
+variables-related-to-portuguese-grade
+grade-in-different-periods
+students-school
+academic-performance
+pattern-in-students-grades

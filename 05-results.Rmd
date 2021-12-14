@@ -220,7 +220,7 @@ Observations:
    * For `schoolsup`: it is clear that the proportion of students who get extra educational support increases as `Math_Letter_Grade_G3` goes from A to D. This seems reasonable because students who got low grades need extra educational support for improvement.
    * For `absences`: the plot shows something unexpected. If we only focus on grade B, C and D, it indicates a trend that fewer absences from school lead to a higher grade in math class. But when we move to grade A, a reverse trend applies. We can see that students with grade A are more likely to be absent from school than students with grade B.
 
-### Variables Relating to Portuguese Grade
+### Variables Related to Portuguese Grade
 ```{r,warning=FALSE}
 p5 = grid.grabExpr(mosaic(Medu ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
 p6 = grid.grabExpr(mosaic(studytime ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
@@ -233,45 +233,48 @@ p12 = grid.grabExpr(mosaic(Dalc ~ Por_Letter_Grade_G3, Por_cor,direction = c("v"
 p13 = grid.grabExpr(mosaic(health ~ Por_Letter_Grade_G3, Por_cor,direction = c("v","h")))
 grid.arrange(p5,p6, ncol = 2)
 ```
+Observations:
 
-`Medu` (mother’s education:0 - none, 1 - primary education (4th grade), 2 - 5th to 9th grade, 3 - secondary education or 4 - higher education): From the mosaic plot, we can see that the majority of students got grade in class B, C and D. If we focus on these classes only, the proportion of students whose mother's education is in level 3 or 4 decreases as we move from class B to class D(so as the proportion of `Medu` = 0 ,1, 2 increases). On the other hand, class A does not seem to follow this trend. However, given that the number of students who got grade A is only 11 and we have 333 students in total, we may need more data to analyze the hidden reason. But it is clear that, the proportion of `Medu` = 3 or 4(high level education) in class A is relatively high compared to class D and F. In conclusion, we expect to see a student to get a higher grade if his/her mother has received higher level education. \
-
-`studytime` (weekly study time: 1 - < 2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours): The plot reveals that students with higher grade used to spend more time on study. And this is intuitively correct as students spend more time on study, it will increase their knowledge and self-assurance to score higher grade. \
+   * For `Medu`: from the mosaic plot, we can find that the majority of students got grade in class B, C and D. If we focus on these classes only, the proportion of students whose mother's education is in level 3 or 4 decreases as we move from class B to class D(so as the proportion of `Medu` = 0 ,1, 2 increases). On the other hand, class A does not seem to follow this trend. However, given that the number of students who got grade A is only 11 and we have 333 students in total, we may need more data to analyze the hidden reason. But it is clear that the proportion of `Medu` = 3 or 4(high-level education) in class A is relatively high compared to class D and F. In conclusion, we expect to see a student get a higher grade if his/her mother has received higher-level education. \
+   * For `studytime`: the plot reveals that students with higher grades used to spend more time on study. This is intuitively correct as students spend more time on study, which will increase their knowledge and self-assurance to score a higher grade. \
 
 ```{r}
 grid.arrange(p7,p8,ncol=2)
 ```
+Observations:
 
-`failures` (number of past class failures: n if 1<=n<3, else 4): There is a same trend as how `failures` affect students' performance on math. We don't see much difference in class A and class B. But when we move to class C, D and F, the number of students who failed more than 2 classes in the past increases dramatically. Hence, here 's the same idea that a student with failures in the past class is prone to get lower grade in the future class. \
-
-`schoolsup`(extra educational support): Same as the relationship between `schoolsup` and `Math_Letter_Grade_G3`, the proportion of students who get extra educational support increases when `Por_Letter_Grade_G3` goes from A to F. This seems reasonable because students who got low grade need extra educational support to help them improve. \
+   * For `failures`: there is the same trend as how `failures` affect students' performance in math. We don't see much difference in class A and class B. But when we move to class C, D and F, the number of students who failed more than 2 classes in the past increases dramatically. Hence, here is the same idea that a student with failures in the past class is prone to get a lower grade in the future class. 
+   * For `schoolsup`: same as the relationship between `schoolsup` and `Math_Letter_Grade_G3`, the proportion of students who get extra educational support increases when `Por_Letter_Grade_G3` goes from A to F. This seems reasonable because students who got low grades need extra educational support to help them improve.
 
 ```{r}
 grid.arrange(p9,p10,ncol=2)
 ```
+Observations:
 
-`higher` (wants to take higher education): The plot shows that students who do not want to pursue a higher level education finally got grade C or D. We cannot say much about a student who want to take higher education, because he/she is equal likely to get grade A, B or C given that the proportion of `higher = yes` is almost the same in grade A, B and C. However, if a student do not want to take higher education, our data supports that he/she is likely to get a grade C or D. Grade F may be an exception here and we cannot conclude anything for it given that there is only one student get grade F. \
-
-`freetime` (free time after school: from 1 - very low to 5 - very high): There is no clear trend to show how `freetime` affects students' grade on Protuguese language. Class B and Class C looks almost the same. Interesting fact is that, there is a boost on students' free time after school when we move to A, D or F, which indicates that big increment in `freetime` may reflect two total different situations: either a student did well in Portuguese exam or a student got low grade(D or F) in the exam. A possible explanation is that, generally, students with grade A study more strategically which increases their study efficiency and save more time on finishing their homework, so have more free time compared to students with grade B and C who spend more time on study with low efficiency so have less free time. And for students with grade D and F, they just spend few time on study so have more free time. \
+   * For `higher`: the plot shows that students who do not want to pursue a higher level education finally got grade C or D. We cannot say much about a student who wants to take higher education, because he/she is equally likely to get grade A, B or C given that the proportion of `higher = yes` is almost the same in grade A, B and C. However, if a student does not want to take higher education, our data supports that he/she is likely to get a grade C or D. Grade F may be an exception here and we cannot conclude anything for it given that there is only one student get grade F. 
+   * For `freetime`: there is no clear trend to show how `freetime` affects students' grades of Portuguese language. Class B and Class C look almost the same. An interesting fact is that, there is a boost in students' free time after school when we move to A, D or F, which indicates that a big increment in `freetime` may reflect two totally different situations: either a student did well in Portuguese exam or a student got low grade(D or F) in the exam. A possible explanation is that, generally, students with grade A study more strategically which increases their study efficiency and save more time on finishing their homework, so have more free time compared to students with grade B and C who spend more time on study with low efficiency so have less free time. And for students with grade D and F, they just spend less time on study so have more free time. 
 
 ```{r}
 grid.arrange(p11,p12,ncol=2)
 ```
 
-`goout` (going out with friends: from 1 - very low to 5 - very high): There is a clear trend that students who often going out with friends(`goout = 4 or 5`) are less likely to get high grade in Portuguese language exam. \
+Observations:
 
-`Dalc` (workday alcohol consumption: from 1 - very low to 5 - very high): The mosaic plot shows that the proportion of `Dalc = 3, 4 or 5` increases in grade B, C, D and F which indicates that increment in alcohol consumption in workday will have negative impact on students' performance on Portuguese. \
-
-
+   * For `goout`: there is a clear trend that students who often go out with friends(`goout = 4 or 5`) are less likely to get a high grade in Portuguese language exams. 
+   * For `Dalc`: the mosaic plot shows that the proportion of `Dalc = 3, 4 or 5` increases in grade B, C, D and F which indicates that increment in alcohol consumption in the workday will have a negative impact on students' performance on Portuguese. 
 ```{r}
 grid.arrange(p13)
 ```
 
-`health` (current health status: from 1 - very bad to 5 - very good): There is a strong relationship between `health` and `Por_Letter_Grade`. Students with higher grade may tend to be more stressful regarding their study. Moreover, as what we discovered before, students with higher grade have longer weekly study time. Hence, unsurprisingly, we expect to see that students with higher grade have worse health condition than those with lower grade, as spending more time on study may have negative impact on health.\
+Observations:
 
-## Grade in Different Period
+   * For `health`: there is a strong relationship between `health` and `Por_Letter_Grade`. Students with a higher grade may tend to be more stressed regarding their studies. Moreover, as we discovered before, students with a higher grade have longer weekly study time. Hence, unsurprisingly, we expect to see that students with a higher grade have worse health condition than those with a lower grade, as spending more time on study may have a negative impact on health.
 
-In this section, we are interested in the grades of Math and Portuguese in different period. We tend to believe that there should be strong relationships among the exam grades in different period, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well. Let's take a look at the alluvial diagram:  \
+## Grade in Different Periods
+
+In this section, we are interested in the grades of Math and Portuguese in different periods. We tend to believe that there should be strong relationships among the exam grades in different periods, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well. 
+
+Let's take a look at the alluvial diagram below:
 
 ```{r}
 df_new = read.csv("./data/clean/df.csv")
@@ -300,7 +303,7 @@ ggplot(combine,aes(axis1 = school, axis2 = Letter_Grade_G1, axis3 = Letter_Grade
         panel.grid.minor.x = element_blank())
 ```
 
-The alluvial plot represents the change of students' grades over the academic year(From the first period to the final period). Most students get same letter grade for G1, G2 and G3 which implies that if a student perform well in an exam, he/she is likely to get a high grade in the next exam. In this case, we believe that students' grades in different periods are high correlated. We can verify this by computing the correlations. This time, we will use `Math_G1`, `Math_G2`, `Math_G3`, `Por_G1`, `Por_G2` and `Por_G3` which are numeric grade instead of letter grade.
+The alluvial plot represents the change of students' grades over the academic year (from the first period to the final period). Most students get the same letter grade for G1, G2 and G3 which implies that if a student performs well in an exam, he/she is likely to get a high grade in the next exam. In this case, we believe that students' grades in different periods are highly correlated. We can verify this by computing the correlations. This time, we will use `Math_G1`, `Math_G2`, `Math_G3`, `Por_G1`, `Por_G2` and `Por_G3` which are numeric grades instead of letter ones.
 ```{r}
 pairs.panels(df[,c(31:33,49:51)],
              method = "pearson",
@@ -309,4 +312,4 @@ pairs.panels(df[,c(31:33,49:51)],
              ellipses = TRUE)
 ```
 
-The pair plot reveals that there are strong correlations(approch 1) within math/portuguese grades in difference period.
+The pair plot reveals that there are strong correlations(approch 1) within math/Portuguese grades in different periods.

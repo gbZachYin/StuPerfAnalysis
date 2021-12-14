@@ -33,7 +33,7 @@
   
 <link rel="prev" href="interactive-component.html"/>
 
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -101,10 +101,10 @@
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#factors-affecting-students-academic-performance"><i class="fa fa-check"></i><b>5.2</b> Factors Affecting Students’ Academic Performance</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#variables-relating-to-math-grade"><i class="fa fa-check"></i><b>5.2.1</b> Variables Relating to Math Grade</a></li>
-<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#variables-relating-to-portuguese-grade"><i class="fa fa-check"></i><b>5.2.2</b> Variables Relating to Portuguese Grade</a></li>
+<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#variables-related-to-math-grade"><i class="fa fa-check"></i><b>5.2.1</b> Variables Related to Math Grade</a></li>
+<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#variables-related-to-portuguese-grade"><i class="fa fa-check"></i><b>5.2.2</b> Variables Related to Portuguese Grade</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#grade-in-different-period"><i class="fa fa-check"></i><b>5.3</b> Grade in Different Period</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#grade-in-different-periods"><i class="fa fa-check"></i><b>5.3</b> Grade in Different Periods</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
 <ul>
@@ -112,7 +112,12 @@
 <li class="chapter" data-level="6.2" data-path="interactive-component.html"><a href="interactive-component.html#descriptions"><i class="fa fa-check"></i><b>6.2</b> Descriptions</a></li>
 <li class="chapter" data-level="6.3" data-path="interactive-component.html"><a href="interactive-component.html#instructions-for-using-the-plot"><i class="fa fa-check"></i><b>6.3</b> Instructions for using the plot</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#students-school"><i class="fa fa-check"></i><b>7.1</b> Students &amp; School</a></li>
+<li class="chapter" data-level="7.2" data-path="conclusion.html"><a href="conclusion.html#academic-performance"><i class="fa fa-check"></i><b>7.2</b> Academic Performance</a></li>
+<li class="chapter" data-level="7.3" data-path="conclusion.html"><a href="conclusion.html#pattern-in-students-grades"><i class="fa fa-check"></i><b>7.3</b> Pattern in Students’ Grades</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -134,15 +139,29 @@
             <section class="normal" id="section-">
 <div id="conclusion" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Conclusion</h1>
-<p><strong>What are some factors that influence students’ academic performance?</strong><br />
-After carefully exploring and visualizing our dataset, we conclude that:<br />
-1. <code>Medu</code>(mother’s education) has a positive impact on students’ math grade while <code>absences</code>(absence from school), <code>schoolsup</code>(extra educational support) and <code>failures</code>(number of failures in the past classes) have negative impact on student’s math grade.<br />
-2. <code>studytime</code> (weekly study time), <code>higher</code> (wants to take higher grade) and <code>Medu</code>(mother’s education) have positive impact on students’ Portuguese language grade while <code>freetime</code>(free time after school), <code>goout</code>(frequency of going out with friends), <code>health</code>(current health status), <code>schoolsup</code>(extra educational support), <code>Dalc</code>(alcohol consumption in weekday) and <code>failures</code>(number of failures in the past classes) have negative impact on students’ Portuguese language grade.<br />
-</p>
-<p><strong>Is there an interesting pattern in students’ grades throughout high school?</strong><br />
-Our discover suggests that there are strong relationship among grade in different period. G1, G2 and G3 are highly correlated.<br />
-</p>
+<div id="students-school" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Students &amp; School</h2>
+<p>Based on our analysis, we have the following conclusion about students’ background and demographic information by schools:</p>
+<ul>
+<li>Students in GP are generally younger than that in MS.</li>
+<li>Students’ family education level in GP is generally higher than that in MS.</li>
+<li>Rural students tend to choose MS over GP.</li>
+<li>Based on students’ choice, GP has a better reputation while courses offered by MS is more attractive.</li>
+</ul>
+</div>
+<div id="academic-performance" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Academic Performance</h2>
+<p>After carefully exploring and visualizing our dataset, we conclude that:</p>
+<ul>
+<li><code>Medu</code>(mother’s education) has a positive impact on students’ math grade while <code>absences</code>(absence from school), <code>schoolsup</code>(extra educational support) and <code>failures</code>(number of failures in the past classes) have a negative impact on student’s math grade.</li>
+<li><code>studytime</code> (weekly study time), <code>higher</code> (wants to take higher grade) and <code>Medu</code>(mother’s education) have a positive impact on students’ Portuguese language grade while <code>freetime</code>(free time after school), <code>goout</code>(frequency of going out with friends), <code>health</code>(current health status), <code>schoolsup</code>(extra educational support), <code>Dalc</code>(alcohol consumption in weekday) and <code>failures</code>(number of failures in the past classes) have a negative impact on students’ Portuguese language grade.</li>
+</ul>
+</div>
+<div id="pattern-in-students-grades" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Pattern in Students’ Grades</h2>
+<p>Our discovery suggests that there is a strong relationship among grades in different periods. G1, G2 and G3 are highly correlated.</p>
 
+</div>
 </div>
             </section>
 
