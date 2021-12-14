@@ -79,7 +79,8 @@ HH::likert(Pedu~.,
              pivot_wider(names_from = school, 
                          values_from = Freq) %>% 
              mutate(GP = 100 * GP / sum(GP),
-                    MS = 100 * MS / sum(MS)),
+                    MS = 100 * MS / sum(MS)) %>% 
+             arrange(desc(Pedu)),
 #           positive.order = TRUE,
            main = "Family education level in two schools",
            xlab = "percent", ylab = "")
