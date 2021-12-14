@@ -27,3 +27,5 @@ link-to-the-interactive-graph
 descriptions
 instructions-for-using-the-plot
 conclusion
+reason-address-school
+variables-related-to-math-grade
