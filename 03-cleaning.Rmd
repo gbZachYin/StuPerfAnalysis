@@ -29,7 +29,10 @@ colnames(df)[colnames(df) == 'G1.y'] = 'Portuguese_G1'
 colnames(df)[colnames(df) == 'G2.y'] = 'Portuguese_G2'
 colnames(df)[colnames(df) == 'G3.y'] = 'Portuguese_G3'
 #Boxplot of age
-ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.title.y=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank())+coord_flip()
+ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.title.y=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank())+coord_flip()+theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
 ```
 
 Given that most students leave secondary school at 16 or 17. There may be some exceptions so that age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which include age = 20 or age = 22. \
@@ -40,13 +43,21 @@ math_long = df %>% pivot_longer(c(Math_G1,Math_G2,Math_G3), names_to = 'Period',
 plot_math = ggplot(math_long,aes(x = Grade)) +
              geom_bar(fill = 'lightblue', color = 'black') +
              facet_wrap(~Period) +
-             ggtitle('Histogram of Math Grades faceted by Period')
+             ggtitle('Histogram of Math Grades faceted by Period') +
+             theme_bw() +
+             theme(plot.title = element_text(hjust = 0.5),
+                   panel.grid.major.x = element_blank(),
+                   panel.grid.minor.x = element_blank())
 
 portuguese_long = df %>% pivot_longer(c(Portuguese_G1,Portuguese_G2,Portuguese_G3), names_to = 'Period', values_to = 'Grade')
 plot_portuguese = ggplot(portuguese_long,aes(x = Grade)) +
              geom_bar(fill = 'lightblue', color = 'black') +
              facet_wrap(~Period) +
-             ggtitle('Histogram of Portuguese Grades faceted by Period')
+             ggtitle('Histogram of Portuguese Grades faceted by Period') +
+             theme_bw() +
+             theme(plot.title = element_text(hjust = 0.5),
+                   panel.grid.major.x = element_blank(),
+                   panel.grid.minor.x = element_blank())
 grid.arrange(plot_math, plot_portuguese, nrow = 2)
 ```
 
