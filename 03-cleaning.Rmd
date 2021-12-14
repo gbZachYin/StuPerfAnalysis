@@ -17,7 +17,8 @@ knitr::kable(Description[c(1:13,20,22), ],
 ## Data Cleaning
 After carefully inspecting each variable, we detected that there are outliers in `Age` and abnormal values in Math and Portuguese grades. \
 Let's firstly take a look at the boxplot of `age`.\
-```{r,echo=FALSE}
+
+```{r,echo=FALSE, fig.width = 7, fig.height = 3}
 #Data Merging
 mat=read.table("./data/raw/student-mat.csv",sep=";",header=TRUE)
 por=read.table("./data/raw/student-por.csv",sep=";",header=TRUE)
@@ -29,8 +30,9 @@ colnames(df)[colnames(df) == 'G1.y'] = 'Portuguese_G1'
 colnames(df)[colnames(df) == 'G2.y'] = 'Portuguese_G2'
 colnames(df)[colnames(df) == 'G3.y'] = 'Portuguese_G3'
 #Boxplot of age
-ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.title.y=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank())+coord_flip()+theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5),
+ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.title.y=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank())+xlab("")+coord_flip()+theme_bw() +
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank())
 ```
