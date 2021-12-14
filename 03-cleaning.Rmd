@@ -18,7 +18,7 @@ knitr::kable(Description[c(1:13,20,22), ],
 After carefully inspecting each variable, we detected that there are outliers in `Age` and abnormal values in Math and Portuguese grades. \
 Let's firstly take a look at the boxplot of `age`.\
 
-```{r,echo=FALSE, fig.width = 7, fig.height = 3}
+```{r clean,echo=FALSE, fig.width = 7, fig.height = 3}
 #Data Merging
 mat=read.table("./data/raw/student-mat.csv",sep=";",header=TRUE)
 por=read.table("./data/raw/student-por.csv",sep=";",header=TRUE)
@@ -40,7 +40,7 @@ ggplot(df,aes(x=factor(0),y=age))+geom_boxplot(fill='lightblue')+theme(axis.titl
 Given that most students leave secondary school at 16 or 17. There may be some exceptions so that age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which include age = 20 or age = 22. \
 Next, let's move to Math and Portuguese grades in different period. \
 \
-```{r,echo=FALSE}
+```{r dn,echo=FALSE}
 math_long = df %>% pivot_longer(c(Math_G1,Math_G2,Math_G3), names_to = 'Period', values_to = 'Grade')
 plot_math = ggplot(math_long,aes(x = Grade)) +
              geom_bar(fill = 'lightblue', color = 'black') +

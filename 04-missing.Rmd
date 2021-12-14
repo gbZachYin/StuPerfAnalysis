@@ -7,7 +7,7 @@ library(tidyverse)
 library(patchwork)
 ```
 
-The plot below shows that there is no missing value in all datasets we use.
+The two plots below show that there is no missing value in **Math** (the first) and **Portuguese** (the second) datasets we use.
 
 ```{r mv, echo = F, message = F, fig.height=8, fig.width=8}
 # define the plot_missing function
@@ -93,6 +93,8 @@ plot_missing <- function(df, percent = F, angle = 0) {
     p_main + p_row + 
     plot_layout(heights = c(1, 2.5), widths = c(2.5, 1))
 }
-student_mat <- read_csv("data/clean/df.csv")
+student_mat <- read_csv("data/clean/math.csv")
+student_por <- read_csv("data/clean/por.csv")
 plot_missing(student_mat, angle = 30)
+plot_missing(student_por, angle = 30)
 ```

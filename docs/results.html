@@ -144,22 +144,22 @@
 <p>This section will focus on non-academic related variables, i.e. analyzing students’ background and demographic information by schools. It is noted that the data used in this section takes all rows after merging since our goal is not to evaluate students’ performance.</p>
 <div id="age" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Age</h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/age-1.png" width="672" /></p>
 <p>The bar chart plot displays students’ age distribution in the two schools. One of obvious properties is that <strong>GP</strong> has much <strong>more</strong> students than <strong>MS</strong>. Precisely, <strong>GP</strong> has a total of 334 students of which accounts for 89.54% of the dataset. Possibly due to the small number of students, age range is more narrow in <strong>MS</strong> (17-19) than that in <strong>GP</strong> (15-22) except for 21.</p>
 <p>In order to compare the age distribution effectively, we draw the relative frequency plot below.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>In the relative frequency plot, it is clear that students in <strong>GP</strong> are generally younger than that in <strong>MS</strong>. In addition, age distribution in <strong>MS</strong> is centered that age group 18 is an absolute majority while age distribution in <strong>GP</strong> is spread that no age group accounts for more than one-third.</p>
 </div>
 <div id="family-education-level" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Family Education Level</h3>
 <p>In this section, we will analyze the students’ family education level in the two schools. Since the dataset offers the education level of both parents, we will use the higher one to indicate the family education level of a student, i.e. <code>max(Medu, Fedu)</code>.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>According to the plot above, we can find that students’ family education level in <strong>GP</strong> is generally higher than that in <strong>MS</strong>.</p>
 </div>
 <div id="sex-address" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Sex &amp; Address</h3>
 <p>In this section, we are going to look at the students’ distribution in terms of their gender and home address type (Urban or Rural).</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Both <strong>GP</strong> and <strong>MS</strong> have a <strong>half-half</strong> gender distribution. However, when it comes to students’ home address in two schools, only around 20% of students in <strong>GP</strong> are from rural areas while there is no significant difference in students’ address type in <strong>MS</strong>. Considering the fact that <strong>GP</strong> has a large sample size, we can conclude that rural students are less likely to choose <strong>GP</strong>.</p>
 </div>
 <div id="reason-of-chosing-school" class="section level3" number="5.1.4">
@@ -169,13 +169,13 @@
 <h4><span class="header-section-number">5.1.4.1</span> Reason &amp; School</h4>
 <p>According to the plot below, there is an association between <code>school</code> and <code>reason</code>. The <strong>Pearson’s Chi-squared</strong> test rejects the hypothesis that two variables are not relevant with a p-value of 0.006, which is consistent with our observation.</p>
 <p>Consequently, we can obtain that <strong>GP</strong> has a better reputation in terms of students’ choices while courses offered by <strong>MS</strong> is more attractive.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="reason-address-school" class="section level4" number="5.1.4.2">
 <h4><span class="header-section-number">5.1.4.2</span> Reason ~ Address + School</h4>
 <p>The plot below indicates that rural students are more likely to choose <strong>MS</strong> over <strong>GP</strong> due to home and other reasons. A possible explanation would be <strong>MS</strong>’s schedule is flexible and friendly to rural students.</p>
 <p>On the other hand, urban students tend to choose <strong>MS</strong> more often than <strong>GP</strong> because of <code>course</code>, which is consistent with what we obtain in the previous section.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -183,18 +183,18 @@
 <h2><span class="header-section-number">5.2</span> Factors Affecting Students’ Academic Performance</h2>
 <p>In this section, we will analyze factors that affect students’ academic performance. Given that we have more than 40 variables in our dataset and all of them are categorical variables after conversion, we decide to use Pearson’s Chi-squared Test to help us narrow down our variable list to be analyzed later. Here we are using the final (the third period) letter grade (<code>Math_Letter_Grade_G3</code> and <code>Por_Letter_Grade_G3</code> converted from <code>G3</code> based on the grading system in Portugal) for both <strong>Math</strong> and <strong>Portuguese</strong> to reflect students’ academic performance.</p>
 <p>For each variable in our dataset, we conduct a Pearson’s Chi-squared Test to see if there is an association between it and <code>Math_Letter_Grade_G3</code> or <code>Portuguese_Letter_Grade_G3</code>. We set with 0.01, and the following graphs show factors that have an impact on students’ <strong>Math</strong> and <strong>Portuguese</strong> grades:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>There are some common factors: <code>Medu</code> has a positive impact on both Math and Portuguese grade, while <code>schoolsup</code> and <code>failures</code> have a negative impact on the two grades.</p>
 <p>Now we can dig deeper into these variables one by one.</p>
 <div id="variables-related-to-math-grade" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Variables Related to Math Grade</h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 Here are some observations from the plot above:</p>
 <ul>
 <li>For <code>Medu</code>: there is an association between a student’s mother’s education level and student’s math letter grade. When the education for a student’s mother is in level 3 or 4, the student is more likely to get a better grade(A or B). The is saying that a student’s mother with high-level education can be helpful to the student’s achievement in math.</li>
 <li>For <code>failures</code>: students who got a grade of A or B never failed any courses in the past, and few of them have a small number of failures (less than 1). However, the proportion of students who failed more than 3 courses in the past increases rapidly in the class of grade C or D. This is reasonable that a student with many failed courses is prone to get a low grade in the future class.</li>
 </ul>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 Observations:</p>
 <ul>
 <li>For <code>schoolsup</code>: it is clear that the proportion of students who get extra educational support increases as <code>Math_Letter_Grade_G3</code> goes from A to D. This seems reasonable because students who got low grades need extra educational support for improvement.</li>
@@ -203,7 +203,7 @@ Observations:</p>
 </div>
 <div id="variables-related-to-portuguese-grade" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Variables Related to Portuguese Grade</h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 Observations:</p>
 <ul>
 <li>For <code>Medu</code>: from the mosaic plot, we can find that the majority of students got grade in class B, C and D. If we focus on these classes only, the proportion of students whose mother’s education is in level 3 or 4 decreases as we move from class B to class D(so as the proportion of <code>Medu</code> = 0 ,1, 2 increases). On the other hand, class A does not seem to follow this trend. However, given that the number of students who got grade A is only 11 and we have 333 students in total, we may need more data to analyze the hidden reason. But it is clear that the proportion of <code>Medu</code> = 3 or 4(high-level education) in class A is relatively high compared to class D and F. In conclusion, we expect to see a student get a higher grade if his/her mother has received higher-level education.<br />
@@ -211,24 +211,24 @@ Observations:</p>
 <li>For <code>studytime</code>: the plot reveals that students with higher grades used to spend more time on study. This is intuitively correct as students spend more time on study, which will increase their knowledge and self-assurance to score a higher grade.<br />
 </li>
 </ul>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 Observations:</p>
 <ul>
 <li>For <code>failures</code>: there is the same trend as how <code>failures</code> affect students’ performance in math. We don’t see much difference in class A and class B. But when we move to class C, D and F, the number of students who failed more than 2 classes in the past increases dramatically. Hence, here is the same idea that a student with failures in the past class is prone to get a lower grade in the future class.</li>
 <li>For <code>schoolsup</code>: same as the relationship between <code>schoolsup</code> and <code>Math_Letter_Grade_G3</code>, the proportion of students who get extra educational support increases when <code>Por_Letter_Grade_G3</code> goes from A to F. This seems reasonable because students who got low grades need extra educational support to help them improve.</li>
 </ul>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 Observations:</p>
 <ul>
 <li>For <code>higher</code>: the plot shows that students who do not want to pursue a higher level education finally got grade C or D. We cannot say much about a student who wants to take higher education, because he/she is equally likely to get grade A, B or C given that the proportion of <code>higher = yes</code> is almost the same in grade A, B and C. However, if a student does not want to take higher education, our data supports that he/she is likely to get a grade C or D. Grade F may be an exception here and we cannot conclude anything for it given that there is only one student get grade F.</li>
 <li>For <code>freetime</code>: there is no clear trend to show how <code>freetime</code> affects students’ grades of Portuguese language. Class B and Class C look almost the same. An interesting fact is that, there is a boost in students’ free time after school when we move to A, D or F, which indicates that a big increment in <code>freetime</code> may reflect two totally different situations: either a student did well in Portuguese exam or a student got low grade(D or F) in the exam. A possible explanation is that, generally, students with grade A study more strategically which increases their study efficiency and save more time on finishing their homework, so have more free time compared to students with grade B and C who spend more time on study with low efficiency so have less free time. And for students with grade D and F, they just spend less time on study so have more free time.</li>
 </ul>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Observations:</p>
 <ul>
 <li>For <code>goout</code>: there is a clear trend that students who often go out with friends(<code>goout = 4 or 5</code>) are less likely to get a high grade in Portuguese language exams.</li>
 <li>For <code>Dalc</code>: the mosaic plot shows that the proportion of <code>Dalc = 3, 4 or 5</code> increases in grade B, C, D and F which indicates that increment in alcohol consumption in the workday will have a negative impact on students’ performance on Portuguese.
-<img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></li>
+<img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></li>
 </ul>
 <p>Observations:</p>
 <ul>
@@ -240,9 +240,9 @@ Observations:</p>
 <h2><span class="header-section-number">5.3</span> Grade in Different Periods</h2>
 <p>In this section, we are interested in the grades of Math and Portuguese in different periods. We tend to believe that there should be strong relationships among the exam grades in different periods, that is if a student can do well in G1 or G2, he/she is expected to do well in G3 as well.</p>
 <p>Let’s take a look at the alluvial diagram below:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>The alluvial plot represents the change of students’ grades over the academic year (from the first period to the final period). Most students get the same letter grade for G1, G2 and G3 which implies that if a student performs well in an exam, he/she is likely to get a high grade in the next exam. In this case, we believe that students’ grades in different periods are highly correlated. We can verify this by computing the correlations. This time, we will use <code>Math_G1</code>, <code>Math_G2</code>, <code>Math_G3</code>, <code>Por_G1</code>, <code>Por_G2</code> and <code>Por_G3</code> which are numeric grades instead of letter ones.
-<img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>The pair plot reveals that there are strong correlations(approch 1) within math/Portuguese grades in different periods.</p>
 
 </div>

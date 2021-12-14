@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-sources.html"/>
 <link rel="next" href="missing-values.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -101,10 +101,10 @@
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#factors-affecting-students-academic-performance"><i class="fa fa-check"></i><b>5.2</b> Factors Affecting Students’ Academic Performance</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#variables-relating-to-math-grade"><i class="fa fa-check"></i><b>5.2.1</b> Variables Relating to Math Grade</a></li>
-<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#variables-relating-to-portuguese-grade"><i class="fa fa-check"></i><b>5.2.2</b> Variables Relating to Portuguese Grade</a></li>
+<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#variables-related-to-math-grade"><i class="fa fa-check"></i><b>5.2.1</b> Variables Related to Math Grade</a></li>
+<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#variables-related-to-portuguese-grade"><i class="fa fa-check"></i><b>5.2.2</b> Variables Related to Portuguese Grade</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#grade-in-different-period"><i class="fa fa-check"></i><b>5.3</b> Grade in Different Period</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#grade-in-different-periods"><i class="fa fa-check"></i><b>5.3</b> Grade in Different Periods</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
 <ul>
@@ -112,7 +112,12 @@
 <li class="chapter" data-level="6.2" data-path="interactive-component.html"><a href="interactive-component.html#descriptions"><i class="fa fa-check"></i><b>6.2</b> Descriptions</a></li>
 <li class="chapter" data-level="6.3" data-path="interactive-component.html"><a href="interactive-component.html#instructions-for-using-the-plot"><i class="fa fa-check"></i><b>6.3</b> Instructions for using the plot</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#students-school"><i class="fa fa-check"></i><b>7.1</b> Students &amp; School</a></li>
+<li class="chapter" data-level="7.2" data-path="conclusion.html"><a href="conclusion.html#academic-performance"><i class="fa fa-check"></i><b>7.2</b> Academic Performance</a></li>
+<li class="chapter" data-level="7.3" data-path="conclusion.html"><a href="conclusion.html#pattern-in-students-grades"><i class="fa fa-check"></i><b>7.3</b> Pattern in Students’ Grades</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -218,11 +223,11 @@
 <p>After carefully inspecting each variable, we detected that there are outliers in <code>Age</code> and abnormal values in Math and Portuguese grades.<br />
 Let’s firstly take a look at the boxplot of <code>age</code>.<br />
 </p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/clean-1.png" width="672" /></p>
 <p>Given that most students leave secondary school at 16 or 17. There may be some exceptions so that age 19 in this dataset seems reasonable. However, we tend to believe that age 20 and 22 are outliers so it is better to remove data which include age = 20 or age = 22.<br />
 Next, let’s move to Math and Portuguese grades in different period.<br />
 <br />
-<img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/dn-1.png" width="672" /></p>
 <p>There are grades that equal to 0. Usually, a student with bad performance on a course may result in very low grade, but not 0. A grade of 0 usually appears when a student missed the exam or he/she cheated in exam. However, absence from exam or cheating are not part of factors we are studying. In this case, we remove all data with grade of 0.</p>
 </div>
 <div id="variable-transformation" class="section level2" number="3.3">
