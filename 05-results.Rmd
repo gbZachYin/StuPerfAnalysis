@@ -169,7 +169,7 @@ for(i in 1:length(list_math)){
   }
 }
 MathCorMat['NP'] = case_when(MathCorMat$cor > 0 ~ 'Positive', MathCorMat$cor < 0 ~ 'Negative')
-f1 = ggplot(MathCorMat, aes(y = cor, x = fct_reorder(factors,cor,.desc=TRUE), fill = NP)) + geom_bar(stat="identity") + xlab('factors') + ggtitle('Correlations between different factors and Math grade in the third period') + theme(legend.position = 'none')
+f1 = ggplot(MathCorMat, aes(y = cor, x = fct_reorder(factors,cor,.desc=TRUE), fill = NP)) + geom_bar(stat="identity") + xlab('factors') + ggtitle('Correlations between different factors and Math grade in the third period') + theme_bw() + theme(legend.position = 'none',plot.title = element_text(hjust = 0.5),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
 
 PorCorMat = data.frame(factors = colnames(Por_cor)[list_por], cor = 1)
 for(i in 1:length(list_por)){
@@ -180,7 +180,7 @@ for(i in 1:length(list_por)){
   }
 }
 PorCorMat['NP'] = case_when(PorCorMat$cor > 0 ~ 'Positive', PorCorMat$cor < 0 ~ 'Negative')
-f2 = ggplot(PorCorMat, aes(y = cor, x = fct_reorder(factors,cor,.desc=TRUE), fill = NP)) + geom_bar(stat="identity") + xlab('factors') + ggtitle('Correlations between different factors and Portuguese grade in the third period') + theme(legend.position = 'none')
+f2 = ggplot(PorCorMat, aes(y = cor, x = fct_reorder(factors,cor,.desc=TRUE), fill = NP)) + geom_bar(stat="identity") + xlab('factors') + ggtitle('Correlations between different factors and Portuguese grade in the third period') + theme_bw() + theme(legend.position = 'none',plot.title = element_text(hjust = 0.5),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
 
 grid.arrange(f1,f2,nrow=2)
 ```
@@ -278,8 +278,14 @@ ggplot(combine,aes(axis1 = school, axis2 = Letter_Grade_G1, axis3 = Letter_Grade
              aes(label = after_stat(stratum))) +
   scale_x_discrete(limits = c("school", "G1_Letter_Grade", "G2_Letter_Grade", "G3_Letter_Grade"),expand = c(.05, .05)) +
   scale_fill_brewer(type = "qual", palette = "Set1") +
-  ggtitle("Alluvial diagram of students' grades through academic year")
-
+  ggtitle("Alluvial diagram of students' grades through academic year") + 
+  theme_bw() + 
+  theme(legend.position = 'none',
+        plot.title = element_text(hjust = 0.5),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
 ```
 
 The alluvial plot represents the change of students' grades over the academic year(From the first period to the final period). Most students get same letter grade for G1, G2 and G3 which implies that if a student perform well in an exam, he/she is likely to get a high grade in the next exam. In this case, we believe that students' grades in different periods are high correlated. We can verify this by computing the correlations. This time, we will use `Math_G1`, `Math_G2`, `Math_G3`, `Por_G1`, `Por_G2` and `Por_G3` which are numeric grade instead of letter grade.
