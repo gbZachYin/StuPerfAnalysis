@@ -24,7 +24,6 @@ This section will focus on non-academic related variables, i.e. analyzing studen
 ### Age
 
 ```{r}
-#stu <- readr::read_csv(here::here("./data/stu-mat.csv")) %>% 
 stu <- readr::read_csv(here::here("./data/clean/nonaca.csv")) %>% 
   mutate(sex = ifelse(sex == "F","Female", "Male"),
          address = ifelse(address == "U","Urban ", "Rural"))

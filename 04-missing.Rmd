@@ -93,6 +93,6 @@ plot_missing <- function(df, percent = F, angle = 0) {
     p_main + p_row + 
     plot_layout(heights = c(1, 2.5), widths = c(2.5, 1))
 }
-student_mat <- read_csv("data/stu-mat.csv")
+student_mat <- read_csv("data/clean/df.csv")
 plot_missing(student_mat, angle = 30)
 ```
