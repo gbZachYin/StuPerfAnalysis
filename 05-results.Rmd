@@ -19,12 +19,13 @@ library(ggalluvial)
 
 ## Students & Schools Analysis
 
-In this section, we will analyze students' non-academic data and in two schools.
+This section will focus on non-academic related variables, i.e. analyzing students' background and demographic information by schools. It is noted that the data used in this section takes all rows after merging since our goal is not to evaluate students' performance.
 
 ### Age
 
 ```{r}
-stu <- readr::read_csv(here::here("./data/stu-mat.csv")) %>% 
+#stu <- readr::read_csv(here::here("./data/stu-mat.csv")) %>% 
+stu <- readr::read_csv(here::here("./data/clean/nonaca.csv")) %>% 
   mutate(sex = ifelse(sex == "F","Female", "Male"),
          address = ifelse(address == "U","Urban ", "Rural"))
 ggplot(stu, aes(factor(age))) +
@@ -40,9 +41,9 @@ ggplot(stu, aes(factor(age))) +
         panel.grid.minor.x = element_blank())
 ```
 
-The bar chart plot displays students' age distribution in the two schools. One of obvious properties is that **GP** has much **more** students than **MS**. Precisely, **GP** has a total of `r sum(ifelse(stu$school=="GP",1,0))` students of which accounts for `r round(sum(ifelse(stu$school=="GP",1,0))/dim(stu)[1],4)*100`% of the dataset. Possibly due to the small number of students, age range is more narrow in **MS** (17-21) than that in **GP** (15-22).
+The bar chart plot displays students' age distribution in the two schools. One of obvious properties is that **GP** has much **more** students than **MS**. Precisely, **GP** has a total of `r sum(ifelse(stu$school=="GP",1,0))` students of which accounts for `r round(sum(ifelse(stu$school=="GP",1,0))/dim(stu)[1],4)*100`% of the dataset. Possibly due to the small number of students, age range is more narrow in **MS** (17-19) than that in **GP** (15-22) except for 21.
 
-In order to compare the age distribution effectively, we calculate relative frequency plot below.
+In order to compare the age distribution effectively, we draw the relative frequency plot below.
 
 ```{r}
 stu %>% 
@@ -52,9 +53,9 @@ stu %>%
   mutate(per = n / sum(n)) %>% 
   dplyr::select(-n) %>% 
   ungroup() %>% 
-  add_row(school = c("GP","MS","MS","MS"), 
-          age = c(21, 15, 16, 22), 
-          per = c(0, 0, 0, 0)) %>% 
+  add_row(school = c("GP","MS","MS","MS","MS"), 
+          age = c(21, 15, 16, 22, 20), 
+          per = c(0, 0, 0, 0, 0)) %>% 
   ggplot(aes(factor(age), per * 100, fill = school)) + 
     geom_bar(stat='identity', position = "dodge")  + 
     xlab("Age") +
@@ -66,7 +67,7 @@ stu %>%
           panel.grid.minor.x = element_blank())
 ```
 
-In the relative frequency plot, it is clear that students in **GP** are generally younger that in **MS**. In addition, age distribution in **MS** is centered that age group 18 is an absolute majority while age distribution in **GP** is spread that no age group accounts for more than thirty percent.
+In the relative frequency plot, it is clear that students in **GP** are generally younger than that in **MS**. In addition, age distribution in **MS** is centered that age group 18 is an absolute majority while age distribution in **GP** is spread that no age group accounts for more than one-third.
 
 ### Family Education Level
 
@@ -85,7 +86,7 @@ HH::likert(Pedu~.,
            xlab = "percent", ylab = "")
 ```
 
-According to the plot above, we can find that students' failmy education level in **GP** is generally higher that in **MS**.
+According to the plot above, we can find that students' family education level in **GP** is generally higher than that in **MS**.
 
 ### Sex & Address
 
@@ -110,7 +111,7 @@ HH::likert(grp~.,
            xlab = "percent", ylab = "")
 ```
 
-In terms of gender, there is nearly no difference between two schools. Both **GP** and **MS** have a **half-half** gender distribution. However, only 20% students in **GP** are from rural area while there is no significance difference in students' address type in **MS**.
+Both **GP** and **MS** have a **half-half** gender distribution. However, when it comes to students' home address in two school, only around 20% students in **GP** are from rural area while there is no significance difference in students' address type in **MS**. Considering the fact that **GP** have a large sample size, we can conclude that rural students are less likely to choose **GP**.
 
 ### Reason of Chosing School
 
