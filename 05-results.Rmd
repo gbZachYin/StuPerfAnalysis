@@ -39,7 +39,8 @@ ggplot(stu, aes(factor(age))) +
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank())
 ```
-The bar chart plot below displays students' age distribution in the two schools. One of obvious property is that **GP** has much **more** students than **MS**. Precisely, **GP** has a total of `r sum(ifelse(stu$school=="GP",1,0))` students of which accounts for `r round(sum(ifelse(stu$school=="GP",1,0))/dim(stu)[1],4)*100`% of the dataset. Possibly due to the small number of students, age range is more narrow in **MS** (17-21) than that in **GP** (15-22).
+
+The bar chart plot displays students' age distribution in the two schools. One of obvious properties is that **GP** has much **more** students than **MS**. Precisely, **GP** has a total of `r sum(ifelse(stu$school=="GP",1,0))` students of which accounts for `r round(sum(ifelse(stu$school=="GP",1,0))/dim(stu)[1],4)*100`% of the dataset. Possibly due to the small number of students, age range is more narrow in **MS** (17-21) than that in **GP** (15-22).
 
 In order to compare the age distribution effectively, we calculate relative frequency plot below.
 
@@ -64,6 +65,7 @@ stu %>%
           panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank())
 ```
+
 In the relative frequency plot, it is clear that students in **GP** are generally younger that in **MS**. In addition, age distribution in **MS** is centered that age group 18 is an absolute majority while age distribution in **GP** is spread that no age group accounts for more than thirty percent.
 
 ### Family Education Level
@@ -78,10 +80,11 @@ HH::likert(Pedu~.,
                          values_from = Freq) %>% 
              mutate(GP = 100 * GP / sum(GP),
                     MS = 100 * MS / sum(MS)),
-           positive.order = TRUE,
+#           positive.order = TRUE,
            main = "Family education level in two schools",
            xlab = "percent", ylab = "")
 ```
+
 According to the plot above, we can find that students' failmy education level in **GP** is generally higher that in **MS**.
 
 ### Sex & Address
@@ -102,7 +105,7 @@ HH::likert(grp~.,
                    rename(grp = address) %>% 
                    mutate(GP = 100 * GP / sum(GP),
                           MS = 100 * MS / sum(MS))),
-           positive.order = TRUE,
+#           positive.order = TRUE,
            main = "% of gender and address in two schools",
            xlab = "percent", ylab = "")
 ```
